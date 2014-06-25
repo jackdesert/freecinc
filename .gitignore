@@ -1,0 +1,6 @@
+.bundle
+*.swp
+*.swo
+temp
+todo
+.ruby-version
