@@ -1,0 +1,46 @@
+%html
+  %head
+  %body
+    %h1 TaskHo.st
+    %warn Save a copy of this page so that all clients you set up use the same keys and configuration
+
+    %h2 Step 1: Make sure TaskWarrior 2.3.0 or greater is installed
+
+    %h2 Step 2: Save Keys
+
+    :ruby
+      user_key =  '~/.task/user_key.pem'
+      user_pem =  '~/.task/user_key.pem'
+      user_key =  '~/.task/user_key.pem'
+      def save_as(key)
+        "Save the following block of text as #{key}"
+
+    %instruct= user_key
+    = save_as(user_key)
+    INSERT GENERATED BLOCK HERE
+
+    %instruct= user_pem
+    = save_as(user_key)
+    INSERT GENERATED BLOCK HERE
+
+    %instruct= user_ca
+    = save_as(user_ca)
+    INSERT GENERATED BLOCK HERE
+
+    %h2 Step 3: Configuration
+    %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
+    %block task config taskd.server taskho.st
+    %block task config key
+    %block task config ca
+    %block task config key
+    %block task config signin
+
+    %h2 Step 4: Verify
+    %p Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set
+
+    %block task diagnostics
+
+    %h2 Step 5: Sync
+    %p The moment you've been waiting for!
+    %block task sync init
+
