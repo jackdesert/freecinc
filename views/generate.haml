@@ -11,21 +11,22 @@
     :ruby
       user_key =  '~/.task/user_key.pem'
       user_pem =  '~/.task/user_key.pem'
-      user_key =  '~/.task/user_key.pem'
+      user_ca =  '~/.task/user_key.pem'
       def save_as(key)
         "Save the following block of text as #{key}"
+      end
 
     %instruct= user_key
     = save_as(user_key)
-    INSERT GENERATED BLOCK HERE
+    %block INSERT GENERATED BLOCK HERE
 
     %instruct= user_pem
     = save_as(user_key)
-    INSERT GENERATED BLOCK HERE
+    %block INSERT GENERATED BLOCK HERE
 
     %instruct= user_ca
     = save_as(user_ca)
-    INSERT GENERATED BLOCK HERE
+    %block INSERT GENERATED BLOCK HERE
 
     %h2 Step 3: Configuration
     %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
