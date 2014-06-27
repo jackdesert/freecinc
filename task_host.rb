@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'pry'
+require 'yaml'
 
 set :port, 9952
 
@@ -13,12 +14,16 @@ env = ENV['RACK_ENV'] || 'development'
 
 require 'json'
 require './helpers/view_helper'
-# Require all your models manually here
-# require './presenters/history_presenter'
+
 
 class Sinatra::Application
   include ViewHelper
 end
+
+# Require all your models manually here
+ require './models/forge'
+
+
 
 get '/' do
   haml :index
