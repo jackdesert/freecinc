@@ -6,5 +6,5 @@ gem 'pry-byebug'
 gem 'rr', require: false
 gem 'guard-rspec'
 gem 'tux'
-gem 'haml'
+gem 'haml', require: false
 gem 'rerun'
