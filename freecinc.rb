@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'pry'
 require 'yaml'
+require 'haml'
 
 set :port, 9952
 
