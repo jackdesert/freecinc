@@ -1,4 +1,5 @@
 require 'yaml'
+require 'open3'
 
 class Forge
 
@@ -7,11 +8,12 @@ class Forge
   TASKDDATA = YAML.load_file(CONFIG_FILE)['taskddata']
   INSTALL_DIR = YAML.load_file(CONFIG_FILE)['install_dir']
   PKI_DIR = YAML.load_file(CONFIG_FILE)['pki_dir']
+  SINATRA_ROOT = YAML.load_file(CONFIG_FILE)['sinatra_root']
 
   SET_DATA_DIR = "--data #{TASKDDATA}"
 
   STARTS_WITH_LETTER = /\A[a-zA-Z]/
-  NUMBERS_AND_LETTERS = /\A[a-zA-Z0-9]+\z/
+  NUMBERS_LETTERS_AND_UNDERSCORE = /\A[_a-zA-Z0-9]+\z/
 
   attr_reader :user_name, :user_organization
 
@@ -22,27 +24,34 @@ class Forge
   end
 
 
-  def generate_keys
+  def generate_certificates
     register_user
-    cd_to_pki_dir
 
-    bash("./generate.client #{user_name}")
+    in_pki_dir do
 
-    copy_user_keys_to_taskddata
+      bash("./generate.client #{user_name}")
 
-    OpenStruct.new( key: user_key,
-                    cert: user_certificate,
-                    ca: ca )
+      copy_user_keys_to_taskddata
+
+      OpenStruct.new( key: user_key,
+                      cert: user_certificate,
+                      ca: ca )
+    end
   end
 
   private
+
+  def in_pki_dir(&block)
+    cd_to_pki_dir
+    yield
+  end
 
   def validate
     hash = { user_name: user_name,
              user_organization: user_organization }
 
     hash.each do |method, value|
-      unless value.match(STARTS_WITH_LETTER) && value.match(NUMBERS_AND_LETTERS)
+      unless value.match(STARTS_WITH_LETTER) && value.match(NUMBERS_LETTERS_AND_UNDERSCORE)
         raise ArgumentError, "#{method} '#{value}' invalid"
       end
     end

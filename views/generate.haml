@@ -1,3 +1,12 @@
+:ruby
+
+  user = locals[:user]
+  raise ArgumentError, 'User required' unless user.is_a?(User)
+  key_filename =  "~/.task/#{user.name}.key.pem"
+  cert_filename = "~/.task/#{user.name}.cert.pem"
+  ca_filename =   "~/.task/ca.cert.pem"
+
+
 %html
   %head
   %body
@@ -8,33 +17,25 @@
 
     %h2 Step 2: Save Keys
 
-    :ruby
-      user_key =  '~/.task/user_key.pem'
-      user_pem =  '~/.task/user_key.pem'
-      user_ca =  '~/.task/user_key.pem'
-      def save_as(key)
-        "Save the following block of text as #{key}"
-      end
 
-    %instruct= user_key
-    = save_as(user_key)
-    %block INSERT GENERATED BLOCK HERE
+    %instruct= key_filename
+    = save_as(key_filename)
+    %block= user.key
 
-    %instruct= user_pem
-    = save_as(user_key)
-    %block INSERT GENERATED BLOCK HERE
+    %instruct= cert_filename
+    = save_as(cert_filename)
+    %block= user.cert
 
-    %instruct= user_ca
-    = save_as(user_ca)
-    %block INSERT GENERATED BLOCK HERE
+    %instruct= ca_filename
+    = save_as(ca_filename)
+    %block= user.ca
 
     %h2 Step 3: Configuration
     %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
-    %block task config taskd.server taskho.st
-    %block task config key
-    %block task config ca
-    %block task config key
-    %block task config signin
+    %block  task config taskd.server freecinc.com
+    %block= "task config taskd.key #{key_filename}"
+    %block= "task config taskd.cert #{cert_filename}"
+    %block= "task config taskd.ca #{ca_filename}"
 
     %h2 Step 4: Verify
     %p Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set

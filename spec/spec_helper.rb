@@ -12,6 +12,7 @@ require 'rr'
 # DB must be defined before models are required
 
 require_relative '../models/forge'
+require_relative '../models/user'
 
 RSpec.configure do |config|
   config.mock_with :rr

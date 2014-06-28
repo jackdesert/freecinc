@@ -29,9 +29,9 @@ describe Forge do
     forge.user_organization.should == organization
   end
 
-  describe '#generate_keys' do
+  describe '#generate_certificates' do
     it 'returns keys' do
-      user_keys = forge.generate_keys
+      user_keys = forge.generate_certificates
       key = user_keys.key
       cert = user_keys.cert
       ca = user_keys.ca
@@ -49,6 +49,27 @@ describe Forge do
       [key, cert, ca].each do |thing|
         (thing.length > 1400).should be_true
       end
+    end
+
+    it 'returns to SINATRA_ROOT' do
+      forge.generate_certificates
+      Dir.pwd.should == described_class::SINATRA_ROOT
+    end
+  end
+
+  describe 'changing directory' do
+    it 'changes back and forth between PKI_DIR and SINATRA_ROOT' do
+      forge.send(:cd_to_pki_dir)
+      Dir.pwd.should == described_class::PKI_DIR
+
+      forge.send(:cd_to_sinatra_root)
+      Dir.pwd.should == described_class::SINATRA_ROOT
+
+      forge.send(:cd_to_pki_dir)
+      Dir.pwd.should == described_class::PKI_DIR
+
+      forge.send(:cd_to_sinatra_root)
+      Dir.pwd.should == described_class::SINATRA_ROOT
     end
   end
 
