@@ -8,8 +8,11 @@ set :port, 9952
 # Bind to 0.0.0.0 even in development mode for access from VM
 set :bind, '0.0.0.0'
 
-# set views directory, since Forge model calls Dir.chdir
-set :views, settings.root + '/views'
+# Set :root explicitly, so that is is not generated dynamically.
+# The problem with dynamic generation is that Forge.generate_certificates
+# calls Dir.chdir, and then sinatra doesn't know where to look for
+# views and stylesheets
+set :root, settings.root
 
 
 env = ENV['RACK_ENV'] || 'development'

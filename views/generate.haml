@@ -9,6 +9,7 @@
 
 %html
   %head
+    = stylesheets
   %body
     %h1 FreeCinc
     %warn Save a copy of this page so that all clients you set up use the same keys and configuration
@@ -20,29 +21,29 @@
 
     %instruct= key_filename
     = save_as(key_filename)
-    %block= user.key
+    %block.copy= user.key
 
     %instruct= cert_filename
     = save_as(cert_filename)
-    %block= user.cert
+    %block.copy= user.cert
 
     %instruct= ca_filename
     = save_as(ca_filename)
-    %block= user.ca
+    %block.copy= user.ca
 
     %h2 Step 3: Configuration
     %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
-    %block  task config taskd.server freecinc.com
-    %block= "task config taskd.key #{key_filename}"
-    %block= "task config taskd.cert #{cert_filename}"
-    %block= "task config taskd.ca #{ca_filename}"
+    %block.command  task config taskd.server freecinc.com
+    %block.command= "task config taskd.key #{key_filename}"
+    %block.command= "task config taskd.cert #{cert_filename}"
+    %block.command= "task config taskd.ca #{ca_filename}"
 
     %h2 Step 4: Verify
     %p Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set
 
-    %block task diagnostics
+    %block.command task diagnostics
 
     %h2 Step 5: Sync
     %p The moment you've been waiting for!
-    %block task sync init
+    %block.command task sync init
 

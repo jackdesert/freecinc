@@ -1,148 +1,31 @@
-.long-container{
-  white-space: nowrap;
-}
-
-.data-point{ width: 4mm;
-  display: inline-block;
-  background-color: black;
-  border-left: 1px solid white;
-}
 
 body{
   background-color: #b0b0b0;
 }
 
-.series-wrapper{
-  float: right;
-  position: relative;
-  right: 21mm;
-  background-color: #bbb;
-}
-
-.series-label{
-  font-size: 7mm;
-  position: absolute;
-  top: 9mm;
-  right: -21mm;
-}
-
-
 .clear{
   clear: both;
 }
 
-.data-point{
-  position: relative;
+instruct, block, warn{
+  display: block;
 }
 
-#cycle-next, #cycle-previous{
-  font-size: 20mm;
-  position: fixed;
-  bottom: 10mm;
-  color: white;
-  padding: 10mm 30mm;
-  background-color: #00d;
-  border-radius: 100mm;
-}
-#cycle-previous{
-  right: auto;
-  left: 10mm;
-}
-#cycle-next{
-  right: 10mm;
-  left: auto;
-}
-#cycle-next:hover, #cycle-previous:hover{
-  cursor: pointer;
-  background-color: blue;
+block{
+  font-family: monospace;
 }
 
-#graph-container{
-  position: absolute;
-  right: 10mm;
-}
-#date-container{
-  z-index: -1;
-  position: absolute;
-  right: 31mm;
-  top: -35mm;
+block.command{
+  margin-left: 25mm;
+  background-color: #aaa;
 }
 
-#zoomed-note{
-  display: none;
-  font-size: 22px;
-  line-height: 1.3;
-  color: blue;
-  position: absolute;
-  top: 0mm;
-  left: 30%;
-  width: 40%;
-  padding: 5mm;
-  border: 1px solid black;
-  background-color: white;
-  opacity: 0.7;
-  border-radius: 100mm;
-
+block.copy{
+  font-size: 37%;
+  background-color: #888;
+  margin-top: 5mm;
+  margin-bottom: 15mm;
+  padding: 3mm;
+  width: 43em;
 }
 
-#note-container{
-  z-index: 10;
-  position: absolute;
-  right: 31mm;
-  top: 71mm;
-}
-#note-container .note{
-  position: relative;
-  right: 1mm;
-  border-left: 1px solid transparent;
-  height: 200mm;
-  width: 4mm;
-  display: inline-block;
-  background-color: transparent;
-}
-
-#note-container .note.with-text:hover{
-  cursor: default;
-  background-color: white;
-}
-
-#note-container .note .text{
-  position: relative;
-  left: 3mm;
-  width: 1px;
-  height: 1px;
-  display: inline-block;
-  font-size: 18px;
-  white-space: nowrap;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-}
-
-
-.date{
-  position: relative;
-  width: 4mm;
-  height: 65mm;
-  display: inline-block;
-  background-color: #bbb;
-  border-left: 1px solid transparent;
-}
-
-.date.odd{
-  background-color: #c0c0c0;
-}
-
-.date .month-start{
-  z-index: 1;
-  width: 1mm;
-  height: 1mm;
-  position: absolute;
-  top: 52mm;
-  right: 1mm;
-  font-size: 16px;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-}
-#z-container{
-  padding-top: 30mm;
-}
