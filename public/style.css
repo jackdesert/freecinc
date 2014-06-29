@@ -1,31 +1,61 @@
+body{
+  max-width: 60ex;
+  margin: 10mm auto;
+  align: center;
+}
+
+
+h1{
+  font-size: 200%;
+  text-align: center;
+}
+
+h2{
+  font-size: 150%;
+  text-align: center;
+}
+
+h3{
+  margin-top: 10mm;
+  font-size: 120%;
+}
 
 body{
   background-color: #b0b0b0;
+}
+
+instruct{
+  margin-top: 2mm;
+  margin-bottom: 6mm;
 }
 
 .clear{
   clear: both;
 }
 
-instruct, block, warn{
+instruct, warn{
+  margin-bottom: 2mm;
   display: block;
 }
 
-block{
+.file-download{
+  margin-left: 15mm;
+}
+
+command{
   font-family: monospace;
+  margin: 0 0 2mm 15mm;
+  background-color: #999;
+  padding: 0mm 4mm;
+  display: inline-block;
 }
 
-block.command{
-  margin-left: 25mm;
-  background-color: #aaa;
-}
-
-block.copy{
-  font-size: 37%;
-  background-color: #888;
-  margin-top: 5mm;
-  margin-bottom: 15mm;
-  padding: 3mm;
-  width: 43em;
+input[type='submit']{
+  font-size: 120%;
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
 }
 

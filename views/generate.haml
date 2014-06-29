@@ -2,9 +2,9 @@
 
   user = locals[:user]
   raise ArgumentError, 'User required' unless user.is_a?(User)
-  key_filename =  "~/.task/#{user.name}.key.pem"
-  cert_filename = "~/.task/#{user.name}.cert.pem"
-  ca_filename =   "~/.task/ca.cert.pem"
+  key_filename =  "#{user.name}.key.pem"
+  cert_filename = "#{user.name}.cert.pem"
+  ca_filename =   "ca.cert.pem"
 
 
 %html
@@ -12,38 +12,42 @@
     = stylesheets
   %body
     %h1 FreeCinc
-    %warn Save a copy of this page so that all clients you set up use the same keys and configuration
+    %warn Your keys have been generated! You may want to save a copy of this we page for future reference---especially if you want to be able to configure multiple clients.
 
-    %h2 Step 1: Make sure TaskWarrior 2.3.0 or greater is installed
+    %h2 Configuration
 
-    %h2 Step 2: Save Keys
+    %h3 1. Make sure TaskWarrior 2.3.0 or greater is installed
+
+    %command  task --version
 
 
-    %instruct= key_filename
-    = save_as(key_filename)
-    %block.copy= user.key.gsub("\n", "<br>")
+    %h3 2. Save Keys
 
-    %instruct= cert_filename
-    = save_as(cert_filename)
-    %block.copy= user.cert
+    %instruct Save the following files to your ~/.task directory
 
-    %instruct= ca_filename
-    = save_as(ca_filename)
-    %block.copy= user.ca
+    = haml :file_download, locals: { password: user.password, filename: key_filename }
+    = haml :file_download, locals: { password: user.password, filename: cert_filename }
+    = haml :file_download, locals: { password: user.password, filename: ca_filename }
 
-    %h2 Step 3: Configuration
+    %h3 3. Configuration
     %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
-    %block.command  task config taskd.server freecinc.com
-    %block.command= "task config taskd.key #{key_filename}"
-    %block.command= "task config taskd.cert #{cert_filename}"
-    %block.command= "task config taskd.ca #{ca_filename}"
+    %command  task config taskd.server freecinc.com
+    %br
 
-    %h2 Step 4: Verify
-    %p Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set
+    %command= "task config taskd.key #{key_filename}"
+    %br
 
-    %block.command task diagnostics
+    %command= "task config taskd.cert #{cert_filename}"
+    %br
 
-    %h2 Step 5: Sync
-    %p The moment you've been waiting for!
-    %block.command task sync init
+    %command= "task config taskd.ca #{ca_filename}"
+
+    %h3 Step 4: Verify
+    %instruct Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set
+
+    %command task diagnostics
+
+    %h3 Step 5: Sync
+    %instruct The moment you've been waiting for!
+    %command task sync init
 

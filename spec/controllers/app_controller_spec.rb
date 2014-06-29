@@ -35,6 +35,7 @@ describe '/download/:filename', focus: true do
 
   it 'returns 200' do
     subject.status.should == 200
+    binding.pry
   end
 
 end

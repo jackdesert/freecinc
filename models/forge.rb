@@ -151,7 +151,9 @@ class CopyForge < Forge
 
   def read_user_certificates
     return nil unless authenticated?
-    all_certificates
+    in_pki_dir do
+      all_certificates
+    end
   end
 
   private
@@ -160,8 +162,8 @@ class CopyForge < Forge
     attrs = { user_name: user_name, password: password }
 
     attrs.each do |key, value|
-      raise ArgumentError, "{key} must be a string" unless value.is_a?(String)
-      raise ArgumentError, "{key} must have non-zero length" unless value.length > 0
+      raise ArgumentError, "#{key} must be a string" unless value.is_a?(String)
+      raise ArgumentError, "#{key} must have non-zero length" unless value.length > 0
     end
   end
 

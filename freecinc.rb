@@ -44,4 +44,28 @@ get '/generate' do
   haml :generate, locals: locals
 end
 
+post '/download/:filename' do |filename|
+  content_type 'application/octet-stream'
+
+  first, second, third = *filename.split('.')
+
+  if first == 'ca'
+    method = :ca
+  elsif second == 'key'
+    user_name = first
+    method = :key
+  elsif second == 'cert'
+    user_name = first
+    method = :cert
+  else
+    raise ArgumentError, "unknown filename #{filename}"
+  end
+  # only here for pry
+  Dir.chdir
+  Dir.chdir('r/freecinc')
+
+  copy_forge = CopyForge.new(user_name, params[:token])
+  copy_forge.read_user_certificates.send(method)
+end
+
 
