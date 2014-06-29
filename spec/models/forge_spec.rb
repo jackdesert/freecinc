@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'open3'
 
-describe Forge do
+describe OriginalForge do
   let(:name) { 'African' }
   let(:organization) { 'Folgers' }
   let(:forge) { described_class.new(name, organization) }
@@ -51,26 +51,6 @@ describe Forge do
       end
     end
 
-    it 'returns to SINATRA_ROOT' do
-      forge.generate_certificates
-      Dir.pwd.should == described_class::SINATRA_ROOT
-    end
-  end
-
-  describe 'changing directory' do
-    it 'changes back and forth between PKI_DIR and SINATRA_ROOT' do
-      forge.send(:cd_to_pki_dir)
-      Dir.pwd.should == described_class::PKI_DIR
-
-      forge.send(:cd_to_sinatra_root)
-      Dir.pwd.should == described_class::SINATRA_ROOT
-
-      forge.send(:cd_to_pki_dir)
-      Dir.pwd.should == described_class::PKI_DIR
-
-      forge.send(:cd_to_sinatra_root)
-      Dir.pwd.should == described_class::SINATRA_ROOT
-    end
   end
 
   describe '#cd_to_pki_dir' do
@@ -138,4 +118,121 @@ describe Forge do
     end
   end
 
+end
+
+
+
+
+describe CopyForge do
+
+  let(:organization) { 'CopyFolgers' }
+
+  context 'validation' do
+    context 'when user_name is nil' do
+      it 'raises an error' do
+        expect {
+          described_class.new(nil, 'something')
+        }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when user_name is empty' do
+      it 'raises an error' do
+        expect {
+          described_class.new('', 'something')
+        }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when password is nil' do
+      it 'raises an error' do
+        expect {
+          described_class.new('something', nil)
+        }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when user_name is empty' do
+      it 'raises an error' do
+        expect {
+          described_class.new('something', '')
+        }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when both user_name and password have at least one character' do
+      it 'raises no errors' do
+        described_class.new('a', 'b')
+      end
+    end
+  end
+
+
+  describe '.generate_password_from_user_name' do
+    it do
+      copy_forge = described_class.new('hungry_monkey', 'anything')
+      copy_forge.send(:generate_password_from_user_name).should == '9ead8103d56db2343ebf49daba6e958154779177'
+    end
+  end
+
+
+
+  describe '.authenticated?' do
+
+    context 'when username and password match' do
+      it 'returns true' do
+        # Note to get the correct password value, just change the SEED, run this test, and paste in what it expected
+        copy_forge = described_class.new('hungry_monkey', '9ead8103d56db2343ebf49daba6e958154779177')
+        copy_forge.send(:authenticated?).should be_true
+      end
+    end
+
+    context 'when username and password do not match' do
+      it 'returns false' do
+        # Note to get the correct password value, just change the SEED, run this test, and paste in what it expected
+        copy_forge = described_class.new('not_a_hungry_monkey', '9ead8103d56db2343ebf49daba6e958154779177')
+        copy_forge.send(:authenticated?).should be_false
+      end
+    end
+  end
+
+
+  describe '.read_user_certificates' do
+
+    subject { described_class.new(user_name, password).read_user_certificates }
+
+    let(:generated_user_name) { "test_#{SecureRandom.hex(4)}" }
+    let(:user_name) { generated_user_name }
+    let(:generated_certificates) { OriginalForge.new(generated_user_name, organization).generate_certificates }
+
+    before do
+      generated_certificates
+    end
+
+    context 'when user_name exists' do
+
+      context 'and password is valid' do
+        let(:password) { described_class.new(user_name, 'anything').send(:generate_password_from_user_name) }
+        it 'returns an OpenStruct' do
+          subject.should be_a(OpenStruct)
+          subject.should == generated_certificates
+        end
+      end
+
+      context 'but the password is invalid' do
+        let(:password) { 'valid' }
+        it 'returns nil' do
+          subject.should be_nil
+        end
+      end
+
+    end
+    context 'when user_name does not exist' do
+      let(:user_name) { 'something_made_up' }
+      let(:password) { 'anything' }
+      it 'returns nil' do
+        subject.should be_nil
+      end
+    end
+  end
 end

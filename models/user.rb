@@ -4,7 +4,7 @@ class User
 
   DEFAULT_ORGANIZATION = 'DoersClub'
 
-  attr_reader :name
+  attr_reader :name, :password
 
   def initialize
     @name = generate_unique_name
@@ -14,7 +14,9 @@ class User
   private
 
   def become_certified
-    @certificates = Forge.new(name, organization).generate_certificates
+    forge = OriginalForge.new(name, organization)
+    @certificates = forge.generate_certificates
+    @password = forge.generate_password_from_user_name
   end
 
   def_delegator :@certificates, :key,  :key

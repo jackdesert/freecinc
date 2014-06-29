@@ -1,3 +1,4 @@
 taskddata:    /home/vagrant/taskddata
 install_dir:  /vagrant/r/freecinc/taskd-1.0.0
 pki_dir:      /vagrant/r/freecinc/taskd-1.0.0/pki
+salt:         abcdefgh

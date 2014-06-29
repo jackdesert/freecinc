@@ -21,7 +21,7 @@
 
     %instruct= key_filename
     = save_as(key_filename)
-    %block.copy= user.key
+    %block.copy= user.key.gsub("\n", "<br>")
 
     %instruct= cert_filename
     = save_as(cert_filename)
