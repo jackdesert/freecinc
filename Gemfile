@@ -8,3 +8,5 @@ gem 'guard-rspec'
 gem 'tux'
 gem 'haml', require: false
 gem 'rerun'
+
+gem'rb-readline'

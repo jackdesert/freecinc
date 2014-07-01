@@ -35,6 +35,8 @@ end
 
 
 get '/' do
+	binding.pry
+"#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
   haml :index
 end
 
@@ -48,6 +50,18 @@ post '/download/:filename' do |filename|
   content_type 'application/octet-stream'
 
   user_name, method_name, pem = *filename.split('.')
+
+  if first == 'ca'
+    method = :ca
+  elsif second == 'key'
+    user_name = first
+    method = :key
+  elsif second == 'cert'
+    user_name = first
+    method = :cert
+  else
+    raise ArgumentError, "unknown filename #{filename}"
+  end
 
   raise ArgumentError, "Unknown file '#{filename}'" unless ['key', 'cert', 'ca'].include? method_name
   copy_forge = CopyForge.new(user_name, params[:token])

@@ -3,7 +3,7 @@ require 'open3'
 
 class Forge
 
-  CONFIG_FILE = File.expand_path('../config/location.yml-EXAMPLE', File.dirname(__FILE__))
+  CONFIG_FILE = File.expand_path('../config/location.yml', File.dirname(__FILE__))
 
   TASKDDATA = YAML.load_file(CONFIG_FILE)['taskddata']
   INSTALL_DIR = YAML.load_file(CONFIG_FILE)['install_dir']

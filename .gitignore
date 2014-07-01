@@ -7,3 +7,4 @@ todo
 .ruby-version
 
 taskd-1.*
+config/location.yml
