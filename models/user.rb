@@ -29,7 +29,7 @@ class User
 
   def generate_unique_name
     hex = SecureRandom.hex(4)
-    "user_#{hex}"
+    "freecinc_#{hex}"
   end
 
 end

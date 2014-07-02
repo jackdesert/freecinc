@@ -1,0 +1,88 @@
+Steps to recreate:
+
+{code}
+cd
+rm .taskrc
+task # this generates a new .taskrc
+task config taskd.key ~/.task/freecinc_94eb3b8c.key.pem
+task config taskd.cert ~/.task/freecinc_94eb3b8c.cert.pem
+task config taskd.ca ~/.task/freecinc_94eb3b8c.ca.pem
+{code}
+
+Then I can view the contents of ~/.taskrc and all three configs show up:
+
+{code}
+# [Created by task 2.3.0 7/2/2014 00:18:43]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-faq',
+# 'man task-tutorial', 'man task-color', 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+# Color theme (uncomment one to use)
+#include /usr/local/share/doc/task/rc/light-16.theme
+#include /usr/local/share/doc/task/rc/light-256.theme
+#include /usr/local/share/doc/task/rc/dark-16.theme
+#include /usr/local/share/doc/task/rc/dark-256.theme
+#include /usr/local/share/doc/task/rc/dark-red-256.theme
+#include /usr/local/share/doc/task/rc/dark-green-256.theme
+#include /usr/local/share/doc/task/rc/dark-blue-256.theme
+#include /usr/local/share/doc/task/rc/dark-violets-256.theme
+#include /usr/local/share/doc/task/rc/dark-yellow-green.theme
+#include /usr/local/share/doc/task/rc/dark-gray-256.theme
+
+taskd.key=\/home\/vagrant\/.task\/freecinc_94eb3b8c.key.pem
+taskd.cert=\/home\/vagrant\/.task\/freecinc_94eb3b8c.cert.pem
+taskd.ca=\/home\/vagrant\/.task\/freecinc_94eb3b8c.ca.pem
+{code}
+
+However, when I run `task diagnostics`, only the key and the ca show up. The cert is listed as unreadable. The cert also does not display the filename that I just set.
+
+{code}
+vagrant@precise64:~/.task$ task diagnostics
+
+task 2.3.0
+Platform: Linux
+
+Compiler
+Version: 4.6.3
+Caps: +stdc +stdc_hosted +200809 +LP64 +c1 +i4 +l8 +vp8
+
+Build Features
+Built: Jun 24 2014 20:16:45
+CMake: 2.8.7
+Caps: -pthreads +tls
+libuuid: libuuid + uuid_unparse_lower
+libgnutls: 2.12.14
+
+Configuration
+File: /home/vagrant/.taskrc (found), 1414 bytes, mode 100664
+Data: /home/vagrant/.task (found), dir, mode 40755
+Locking: Enabled
+GC: Enabled
+$EDITOR: vim
+Server:
+CA: /home/vagrant/.task/freecinc_94eb3b8c.ca.pem (readable)
+  Cert:  (not readable)
+Key: /home/vagrant/.task/freecinc_94eb3b8c.key.pem (readable)
+  Ciphers: NORMAL
+  Creds:
+
+  External Utilities
+scp: (found)
+  rsync: version 3.0.9
+  curl: curl 7.22.0
+
+  Tests
+$TERM: xterm (202x43)
+  Dups: Scanned 0 tasks for duplicate UUIDs:
+  No duplicates found
+{code}

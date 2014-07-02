@@ -4,7 +4,7 @@
   raise ArgumentError, 'User required' unless user.is_a?(User)
   key_filename =  "#{user.name}.key.pem"
   cert_filename = "#{user.name}.cert.pem"
-  ca_filename =   "ca.cert.pem"
+  ca_filename =   "#{user.name}.ca.pem"
 
 
 %html
@@ -31,16 +31,17 @@
 
     %h3 3. Configuration
     %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
-    %command  task config taskd.server freecinc.com
+
+    %command  task config taskd.server freecinc.com:53589
     %br
 
-    %command= "task config taskd.key #{key_filename}"
+    %command= "task config taskd.key ~/.task/#{key_filename}"
     %br
 
-    %command= "task config taskd.cert #{cert_filename}"
+    %command= "task config taskd.certificate ~/.task/#{cert_filename}"
     %br
 
-    %command= "task config taskd.ca #{ca_filename}"
+    %command= "task config taskd.ca ~/.task/#{ca_filename}"
 
     %h3 Step 4: Verify
     %instruct Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set

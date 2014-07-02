@@ -1,0 +1,23 @@
+What do you think about changing the output of `task diagnostics` to use the full word "Certificate" instead of the shortened "Cert"?
+
+Here's a snippet from `task diagnostics`:
+
+{code}
+CA: /home/vagrant/.task/freecinc_94eb3b8c.ca.pem (readable)
+  Cert: /home/vagrant/.task/freecinc_94eb3b8c.cert.pem (readable)
+Key: /home/vagrant/.task/freecinc_94eb3b8c.key.pem (readable)
+  Ciphers: NORMAL
+  Creds:
+{code}
+
+From reading this I was mistakenly typing the shortened form as I was setting up my configuration:
+
+{code}
+# doesn't work
+task config taskd.cert ~/.task/freecinc_94eb3b8c.cert.pem
+
+# works
+task config taskd.certificate ~/.task/freecinc_94eb3b8c.cert.pem
+{code}
+
+Like I said, not a bug per se, but I thought it was indeed a bug because the configuration parameter name did not match the output of `task diagnostics`
