@@ -35,8 +35,6 @@ end
 
 
 get '/' do
-	binding.pry
-"#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
   haml :index
 end
 
