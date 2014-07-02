@@ -27,7 +27,7 @@ describe '/generate' do
   end
 end
 
-describe '/download/:filename', focus: true do
+describe '/download/:filename' do
 
   let(:user_name) { user.name }
   let(:user) { User.new }
@@ -35,7 +35,6 @@ describe '/download/:filename', focus: true do
 
   it 'returns 200' do
     subject.status.should == 200
-    binding.pry
   end
 
 end

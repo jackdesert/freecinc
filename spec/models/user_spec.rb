@@ -15,7 +15,7 @@ describe User do
       it 'has a name' do
         name = user.name
         name.should_not be_nil
-        name.length.should == 13
+        name.length.should == 17
       end
     end
 
