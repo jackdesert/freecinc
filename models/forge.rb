@@ -15,8 +15,9 @@ class Forge
 
   STARTS_WITH_LETTER = /\A[a-zA-Z]/
   NUMBERS_LETTERS_AND_UNDERSCORE = /\A[_a-zA-Z0-9]+\z/
+  UUID = /[0-9a-f\-]{36}/
 
-  attr_reader :user_name
+  attr_reader :user_name, :uid
 
   def initialize(a,b)
     raise ArgumentError, 'Instantiate a subclass of this'
@@ -40,7 +41,8 @@ class Forge
   def all_certificates
     OpenStruct.new( key: user_key,
                     cert: user_certificate,
-                    ca: ca )
+                    ca: ca,
+                    uid: uid)
   end
 
   def user_key
@@ -108,6 +110,7 @@ class OriginalForge < Forge
 
   def bash(command, tolerate_errors=false)
     stdin, stdout_and_stderr, wait_thr = Open3.popen2e(command)
+    output = stdout_and_stderr.read
 
     unless (wait_thr.value.success? || tolerate_errors)
       raise ArgumentError, stdout_and_stderr.read
@@ -115,6 +118,7 @@ class OriginalForge < Forge
 
     stdin.close
     stdout_and_stderr.close
+    output
   end
 
   def bash_with_tolerated_errors(command)
@@ -127,7 +131,10 @@ class OriginalForge < Forge
 
   def register_user
     ensure_user_organization_exists
-    bash("taskd add user '#{user_organization}' '#{user_name}' #{SET_DATA_DIR}")
+    bash_response = bash("taskd add user '#{user_organization}' '#{user_name}' #{SET_DATA_DIR}")
+    uid_match = bash_response.match(UUID)
+    @uid = uid_match.values_at(0).first
+    raise ArgumentError, 'uuid must by 36 characters' unless uid.length == 36
   end
 
   def ensure_user_organization_exists

@@ -35,6 +35,10 @@ describe OriginalForge do
       key = user_keys.key
       cert = user_keys.cert
       ca = user_keys.ca
+      uid = user_keys.uid
+
+      uid.length.should == 36
+      uid.should be_a(String)
 
       [key, cert].each do |thing|
         key.should include('BEGIN RSA PRIVATE KEY')
@@ -203,10 +207,11 @@ describe CopyForge do
 
     let(:generated_user_name) { "test_#{SecureRandom.hex(4)}" }
     let(:user_name) { generated_user_name }
-    let(:generated_certificates) { OriginalForge.new(generated_user_name, organization).generate_certificates }
+    let(:generated_certificates)  {OriginalForge.new(generated_user_name, organization).generate_certificates }
 
     before do
-      generated_certificates
+      # stomp the #uid so it matches what the CopyForge can produce
+      generated_certificates.uid = nil
     end
 
     context 'when user_name exists' do

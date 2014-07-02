@@ -42,6 +42,9 @@
     %br
 
     %command= "task config taskd.ca ~/.task/#{ca_filename}"
+    %br
+
+    %command= "task config taskd.credentials '#{user.organization}/#{user.name}/#{user.uid}'"
 
     %h3 Step 4: Verify
     %instruct Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set
