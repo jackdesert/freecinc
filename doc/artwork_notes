@@ -6,3 +6,40 @@ Basically, it's a list of instructions for getting something up and running.The 
 The smaller blocks of text are code that they must run in a terminal.This site doesn't need to be fancy, but it must be beautiful and clear.
 If you have any questions, let me know.
 --Jack
+
+
+Vincent,
+
+This is going to be a great project! I like where you're going with this and I want to bump the site up to two pages instead of one. I paid for the $20 extra plan so we can get started.
+
+Take a look at the site so far:  http://freecinc.com
+
+Create a Home Page
+------------------
+
+I would like you to design the home page ( http://freecinc.com ) to match the Configuration Page that you already designed. The home page is the one at http://freecinc.com that says "FreeCinc: A Hosted solution for syncing your TaskWarrior Client" at the top.
+
+As for the configuration page (the one you already designed), you get to it by clicking "Generate my Keys!" from the home page. I'm hoping that instead of a generic-looking link that the "Generate my Keys" call-to-action can be something more dynamic and engaging.
+
+
+Changes to Configuration Page
+-----------------------------
+
+Once you click "Generate my Keys!" on the home page, it takes you to the configuration page.
+
+The biggest thing that needs to happen is that the big blocks of text are gone, so that instead of copy-and-pasting them, the user will just download them as files.
+
+It would be nice if the links to those files were dynamic and engaging.
+
+
+Navigation
+----------
+
+Please provide some means of navigating from the configuration page back to the home page.
+
+
+
+Font Family
+-----------
+
+Which font did you use on the design? I'm hoping to go with a web font that approximates what you used.
