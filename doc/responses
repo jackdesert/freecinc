@@ -63,3 +63,28 @@ website.
 (purpose, common name, etc.)
   21:45 -!- coddingtonbear is now known as coddingtonbear|a
   21:47 < pbeckingham> Kasperle: Thank you.  I'm not sure the client cert has the right bits set.  Need to look into this.
+
+
+  16:46 < jackdesert> pbeckingham: RE: taskd security---Not complaining, just assessing. Trying to figure out ways to hack the
+  system so I can convince myself that it really is secure enough.
+  16:47 < jackdesert> pbeckingham: And I'm no security expert, either. But I'll let you know anything of interest that I find.
+  16:51 < jackdesert> In my reading so far, the only that has actually surprised me is that there are a fair number of complaints
+  about PKI in general. As an example, here is an essay by Bruce Schneier giving his opinion on the matter:
+  https://www.schneier.com/paper-pki-ft.txt
+16:52  * jackdesert switching gears...
+16:53 < jackdesert> Question about the generation of certificates in taskd-1.0.0/pki
+16:57 < jackdesert> Perhaps I'm ok running with a self-signed certificate, but I'm trying to set up with a purchased certificate
+anyway just to understand the process
+17:01 < jackdesert> It appears that both generate.server and generate.client use ca.key.pem and ca.cert.pem to generate the
+resulting certificate.
+17:03 < jackdesert> to generate their respective certificates, that is.
+17:04 < jackdesert> I'm surprised that server.key.pem and server.cert.pem are not used in the generation of client.cert.pem.
+17:11 < jackdesert> Those things aside, let's say I have myserver.key (private key I generated) and myserver.crt (certificate
+    signed by comodo when I sent them a csr generated from my private key).
+17:12 < jackdesert> Do I put myserver.key and myserver.crt in place of taskd-1.0.0/pki/ca.key.pem and taskd-1.0.0/pki/ca.cert.pem
+?
+17:13 < jackdesert> [D[D[D[D[D[D[DOr do I put myserver.key and myserver.crt in place of taskd-1.0.0/pki/server.key.pem and
+taskd-1.0.0/pki/server.cert.pem ?
+17:14 < jackdesert> woops that didn't paste right. It should say:
+17:14 < jackdesert> Or do I put myserver.key and myserver.crt in place of taskd-1.0.0/pki/server.key.pem and
+taskd-1.0.0/pki/server.cert.pem ?

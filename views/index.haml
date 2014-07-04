@@ -1,14 +1,9 @@
-%html
-  %head
-    = stylesheets
-  %body
-    %h1 FreeCinc
-    %p A hosted solution for syncing your TaskWarrior client
-    %p Now you don't have to have your own cloud server to sync your tasks
+%p
+  Now you don't have to have your own cloud server to sync your tasks.
 
-    %h2 Requirements
-    %ul
-      %li taskwarrior 2.3.0 or above
-
-    = link_to 'generate', 'Generate my keys!'
+%section.generate
+  %a.center{href: 'generate'}
+    .looks-like-button#generate
+      Generate my keys!
+  = haml :_man, locals: { type: :smile }
 

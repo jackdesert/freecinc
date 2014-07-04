@@ -29,7 +29,8 @@ time, mark, audio, video {
 
 body {
   line-height:1.3;
-  font-family: arial;
+  font-family: futura, arial, sans-serif;
+  font-weight: 700;
 }
 
 article,aside,details,figcaption,figure,

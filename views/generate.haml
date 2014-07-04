@@ -7,53 +7,79 @@
   ca_filename =   "#{user.name}.ca.pem"
 
 
-%html
-  %head
-    = stylesheets
-  %body
-    %h1 FreeCinc
-    %warn Your keys have been generated! You may want to save a copy of this we page for future reference---especially if you want to be able to configure multiple clients.
+%p Your keys have been generated! You may want to save a copy of this we page for future reference---especially if you want to be able to configure multiple clients.
 
-    %h2 Configuration
+%h2 Configuration
 
-    %h3 1. Make sure TaskWarrior 2.3.0 or greater is installed
+%section.first-color
+  =haml :_man, locals: {type: :point}
 
-    %command  task --version
+  .step
+    .label Step 1:
+    %h3 Prereqs
+  %instruct Make sure TaskWarrior 2.3.0 or greater is installed
+
+  %command  task --version
 
 
-    %h3 2. Save Keys
+%section.first-color
+  =haml :_man, locals: {type: :smile}
 
-    %instruct Save the following files to your ~/.task directory
+  .step
+    .label Step 2:
+    %h3 Save Keys
 
-    = haml :file_download, locals: { password: user.password, filename: key_filename }
-    = haml :file_download, locals: { password: user.password, filename: cert_filename }
-    = haml :file_download, locals: { password: user.password, filename: ca_filename }
+  %instruct Save the following files to your ~/.task directory
 
-    %h3 3. Configuration
-    %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
+  = haml :file_download, locals: { password: user.password, filename: key_filename }
+  = haml :file_download, locals: { password: user.password, filename: cert_filename }
+  = haml :file_download, locals: { password: user.password, filename: ca_filename }
 
-    %command  task config taskd.server freecinc.com:53589
-    %br
 
-    %command= "task config taskd.key ~/.task/#{key_filename}"
-    %br
+%section.second-color
+  =haml :_man, locals: {type: :tilt}
 
-    %command= "task config taskd.certificate ~/.task/#{cert_filename}"
-    %br
+  .step
+    .label Step 3:
+    %h3 Configuration
 
-    %command= "task config taskd.ca ~/.task/#{ca_filename}"
-    %br
+  %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
 
-    %command= "task config taskd.credentials '#{user.organization}/#{user.name}/#{user.uid}'"
+  %command  task config taskd.server freecinc.com:53589
+  %br
 
-    %h3 Step 4: Verify
-    %instruct Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set
+  %command= "task config taskd.key ~/.task/#{key_filename}"
+  %br
 
-    %command task diagnostics
+  %command= "task config taskd.certificate ~/.task/#{cert_filename}"
+  %br
 
-    %instruct Make sure that in the output, 'CA', 'Cert', and 'Key' are all readable, and make sure that you have a value for 'Server'
+  %command= "task config taskd.ca ~/.task/#{ca_filename}"
+  %br
 
-    %h3 Step 5: Sync
-    %instruct The moment you've been waiting for!
-    %command task sync init
+  %command= "task config taskd.credentials &#92<br>&nbsp;&nbsp;'#{user.organization}/#{user.name}/#{user.uid}'"
+
+
+%section.second-color
+  =haml :_man, locals: {type: :inspect}
+
+  .step
+    .label Step 4:
+    %h3 Verify
+  %instruct Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set
+
+  %command task diagnostics
+
+  %instruct Make sure that in the output, 'CA', 'Cert', and 'Key' are all readable, and make sure that you have a value for 'Server'
+
+
+%section.second-color
+  =haml :_man, locals: {type: :tada}
+
+  .step
+    .label Step 5:
+    %h3 Sync
+
+  %instruct The moment you've been waiting for!
+  %command task sync init
 

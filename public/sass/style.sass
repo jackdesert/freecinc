@@ -1,0 +1,226 @@
+// Colors
+$logo-red: #E16E6F
+$nearly-black: #252525
+$sky: #00CAD8
+$button-blue: #1271C3
+$button-blue-dark: #0A4985
+$button-blue-medium: #0B56A4
+$button-blue-light: #1174BA
+$grey-light: #C2C2C2
+$mustard-yellow: #EDDA34
+$lime-green: #43B77A
+
+$content-width: 1350px
+$logo-size: 246px
+$really-big: 1000px
+$button-border-radius: 7px
+$indent-0: 20%
+$indent-1: $indent-0 + 5%
+$indent-2: $indent-1 + 5%
+
+
+
+body
+    color: white
+    text-transform: uppercase
+    background-color: $nearly-black
+    box-sizing: border-box
+
+section
+    position: relative
+    padding-top: 2rem
+    padding-bottom: 2rem
+    &.generate
+        height: 64mm
+    &.first-color
+        background-color: $mustard-yellow
+    &.second-color
+        background-color: $lime-green
+
+#content
+    width: 100%
+    max-width: $content-width
+    font-size: 30px
+    margin: 0 auto
+
+#header
+    height: 554px
+    position: relative
+    width: 100%
+    border: 1px solid $nearly-black
+
+
+    #cityscape
+        margin-top: 139px
+        padding-top: 322px
+        background: url('images/city_background.png')
+        // Put the logo right in between the two tallest fat buildings
+        background-position: -474mm 72mm
+        height: 27mm
+        #subtitle
+            text-align: center
+
+    #logo
+        position: absolute
+        left: ($content-width - $logo-size) / 2
+        width: $logo-size
+        height: $logo-size
+        border: 12px solid $nearly-black
+        border-radius: $really-big
+        margin: 0 auto
+        background-color: white
+        h1
+            color: $logo-red
+            text-transform: uppercase
+            font-size: 79px
+            line-height: 1
+            padding-top: 56px
+            span
+                font-size: 63px
+                line-height: 1
+                display: inline-block
+                margin-top: -3px
+
+#the-rest
+    background-color: $sky
+
+p
+    padding: 2mm 10mm
+
+
+a
+    text-decoration: none
+
+
+
+.looks-like-button
+    font-size: 0.7rem
+    padding: 20px 0px 20px 30px
+    text-decoration: none
+    color: white
+    background-color: $button-blue
+    box-shadow: 0px 11px 0px $button-blue-dark
+    border-radius: $button-border-radius
+    border: none
+    display: block
+    &:hover
+        background-color: darken($button-blue, 5%)
+    &.file-download
+        width: 14rem
+        background: $button-blue url('images/down-arrow-smaller.png') no-repeat right 11px center
+        padding: 0.7rem
+        text-align: left
+        margin-left: $indent-1
+        margin-bottom: 0.7rem
+
+    &#generate
+        width: 25ex
+        background: $button-blue url('images/key.png') no-repeat right 11px center
+        margin: 0 auto 0.6rem
+
+h1, h2, h3, h4, div, instruct, warn, command, man, input
+    box-sizing: border-box
+
+.step
+    position: relative
+    left: $indent-0
+    display: inline-block
+    width: 25ex
+    background-color: $button-blue-light
+    border-radius: $button-border-radius
+    .label
+        padding-left: 1ex
+        padding-top: 0.3em
+        padding-bottom: 0.35em
+        display: inline-block
+        width: 10ex
+        background-color: $button-blue-medium
+        border-radius: $button-border-radius 0 0 $button-border-radius
+    h3
+        display: inline-block
+        position: absolute
+        height: 100%
+        top: 0.89em
+        left: 13.2ex
+        margin: 0
+        padding: 0
+        font-size: 62%
+        width: 30ex
+        text-align: center
+
+
+
+h1
+    font-size: 200%
+    text-align: center
+
+
+h2
+    font-size: 150%
+    text-align: center
+
+
+h3
+    margin-top: 10mm
+    font-size: 120%
+
+
+
+instruct
+    margin-top: 2mm
+    margin-bottom: 6mm
+    margin-left: $indent-1
+    font-size: 0.7rem
+
+
+.clear
+    clear: both
+
+
+instruct, warn
+    margin-bottom: 2mm
+    display: block
+
+
+
+
+command
+    margin-left: $indent-1
+    font-family: monospace
+    font-weight: 100
+    text-transform: none
+    margin: 0 0 2mm $indent-1
+    background-color: $grey-light
+    color: $nearly-black
+    padding: 0mm 4mm
+    display: inline-block
+    font-size: 61%
+
+
+//input[type='submit']
+//    font-size: 120%
+//    border: none
+//    background-color: transparent
+//    text-decoration: underline
+//    color: blue
+//    cursor: pointer
+
+#footer
+    text-align: center
+    padding: 10mm
+    background-color: $nearly-black
+    font-size: 78%
+
+
+
+man
+    position: absolute
+    top: 0mm
+    left: 13mm
+    z-index: 1
+    img
+        height: 7.5rem
+man.tada
+    img
+        height: 10rem
+    img

@@ -8,3 +8,7 @@ todo
 
 taskd-1.*
 config/location.yml
+.sass-cache/
+
+# This is still on a shared dir with mac osx
+.DS_STORE

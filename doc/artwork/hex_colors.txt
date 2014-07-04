@@ -1,0 +1,12 @@
+yellow-config: eedc0f
+yellow-key: ffa500
+green-config 3cb878
+medium-blue: 0072bc
+dark-blue: 003471
+red-logo: e36d6d
+blue-green-sky: 16c3d2
+faded-green-city: 1793a2
+grey: c2c2c2
+white: ffffff
+black: 262626
+charcoal: 252525

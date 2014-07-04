@@ -1,61 +1,173 @@
-body{
-  max-width: 60ex;
-  margin: 10mm auto;
-  align: center;
-}
+body {
+  color: white;
+  text-transform: uppercase;
+  background-color: #252525;
+  box-sizing: border-box; }
 
+section {
+  position: relative;
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+  section.generate {
+    height: 64mm; }
+  section.first-color {
+    background-color: #edda34; }
+  section.second-color {
+    background-color: #43b77a; }
 
-h1{
+#content {
+  width: 100%;
+  max-width: 1350px;
+  font-size: 30px;
+  margin: 0 auto; }
+
+#header {
+  height: 554px;
+  position: relative;
+  width: 100%;
+  border: 1px solid #252525; }
+  #header #cityscape {
+    margin-top: 139px;
+    padding-top: 322px;
+    background: url("images/city_background.png");
+    background-position: -474mm 72mm;
+    height: 27mm; }
+    #header #cityscape #subtitle {
+      text-align: center; }
+  #header #logo {
+    position: absolute;
+    left: 552px;
+    width: 246px;
+    height: 246px;
+    border: 12px solid #252525;
+    border-radius: 1000px;
+    margin: 0 auto;
+    background-color: white; }
+    #header #logo h1 {
+      color: #e16e6f;
+      text-transform: uppercase;
+      font-size: 79px;
+      line-height: 1;
+      padding-top: 56px; }
+      #header #logo h1 span {
+        font-size: 63px;
+        line-height: 1;
+        display: inline-block;
+        margin-top: -3px; }
+
+#the-rest {
+  background-color: #00cad8; }
+
+p {
+  padding: 2mm 10mm; }
+
+a {
+  text-decoration: none; }
+
+.looks-like-button {
+  font-size: 0.7rem;
+  padding: 20px 0px 20px 30px;
+  text-decoration: none;
+  color: white;
+  background-color: #1271c3;
+  box-shadow: 0px 11px 0px #0a4985;
+  border-radius: 7px;
+  border: none;
+  display: block; }
+  .looks-like-button:hover {
+    background-color: #1063ac; }
+  .looks-like-button.file-download {
+    width: 14rem;
+    background: #1271c3 url("images/down-arrow-smaller.png") no-repeat right 11px center;
+    padding: 0.7rem;
+    text-align: left;
+    margin-left: 25%;
+    margin-bottom: 0.7rem; }
+  .looks-like-button#generate {
+    width: 25ex;
+    background: #1271c3 url("images/key.png") no-repeat right 11px center;
+    margin: 0 auto 0.6rem; }
+
+h1, h2, h3, h4, div, instruct, warn, command, man, input {
+  box-sizing: border-box; }
+
+.step {
+  position: relative;
+  left: 20%;
+  display: inline-block;
+  width: 25ex;
+  background-color: #1174ba;
+  border-radius: 7px; }
+  .step .label {
+    padding-left: 1ex;
+    padding-top: 0.3em;
+    padding-bottom: 0.35em;
+    display: inline-block;
+    width: 10ex;
+    background-color: #0b56a4;
+    border-radius: 7px 0 0 7px; }
+  .step h3 {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    top: 0.89em;
+    left: 13.2ex;
+    margin: 0;
+    padding: 0;
+    font-size: 62%;
+    width: 30ex;
+    text-align: center; }
+
+h1 {
   font-size: 200%;
-  text-align: center;
-}
+  text-align: center; }
 
-h2{
+h2 {
   font-size: 150%;
-  text-align: center;
-}
+  text-align: center; }
 
-h3{
+h3 {
   margin-top: 10mm;
-  font-size: 120%;
-}
+  font-size: 120%; }
 
-body{
-  background-color: #b0b0b0;
-}
-
-instruct{
+instruct {
   margin-top: 2mm;
   margin-bottom: 6mm;
-}
+  margin-left: 25%;
+  font-size: 0.7rem; }
 
-.clear{
-  clear: both;
-}
+.clear {
+  clear: both; }
 
-instruct, warn{
+instruct, warn {
   margin-bottom: 2mm;
-  display: block;
-}
+  display: block; }
 
-.file-download{
-  margin-left: 15mm;
-}
-
-command{
+command {
+  margin-left: 25%;
   font-family: monospace;
-  margin: 0 0 2mm 15mm;
-  background-color: #999;
+  font-weight: 100;
+  text-transform: none;
+  margin: 0 0 2mm 25%;
+  background-color: #c2c2c2;
+  color: #252525;
   padding: 0mm 4mm;
   display: inline-block;
-}
+  font-size: 61%; }
 
-input[type='submit']{
-  font-size: 120%;
-  border: none;
-  background-color: transparent;
-  text-decoration: underline;
-  color: blue;
-  cursor: pointer;
-}
+#footer {
+  text-align: center;
+  padding: 10mm;
+  background-color: #252525;
+  font-size: 78%; }
 
+man {
+  position: absolute;
+  top: 0mm;
+  left: 13mm;
+  z-index: 1; }
+  man img {
+    height: 7.5rem; }
+
+man.tada img {
+  height: 10rem; }

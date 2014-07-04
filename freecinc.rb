@@ -39,7 +39,6 @@ get '/' do
 end
 
 get '/generate' do
-
   locals = {user: User.new}
   haml :generate, locals: locals
 end

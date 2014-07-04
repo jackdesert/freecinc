@@ -5,7 +5,9 @@
   filename = locals[:filename]
   raise ArgumentError, 'filename required' unless filename
 
+
+
 %form{class: 'file-download', name: :key, id: filename, action: secure_url("/download/#{filename}"), method: :post}
   %input{type: :hidden, name: 'token', value: password}
-    %input{type: :submit, value: filename, class: :file_download}
+    %input{type: :submit, value: filename, class: 'looks-like-button file-download'}
 
