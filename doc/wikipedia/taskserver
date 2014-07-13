@@ -1,0 +1,45 @@
+{{User sandbox}}
+<!-- EDIT BELOW THIS LINE -->
+
+
+{{Infobox software
+| name = Taskserver
+| author = Paul Beckingham
+| developer = Paul Beckingham
+| latest release version = 1.0.0
+| latest release date = {{release date|2014|1|15}}
+| programming language = [[C++]]
+| operating system = [[Cross-platform]]
+| language = English
+| status = Active
+| genre = [[Task management]], [[Time management]]
+| license = [[MIT License]]
+| website = http://tasktools.org/projects/taskd.html
+}}
+
+
+'''Taskserver''', also known as '''taskd''',  is an open-source server daemon that allows users to sync their task data between multiple devices.
+
+
+==Security==
+
+Security is provided through public-key encryption, and knowledge of a shared key.
+
+
+==Supported Clients==
+
+Taskserver currently supports [[Taskwarrior]] 2.3.0
+
+
+==History==
+
+Development began in September 2012
+
+
+==References==
+{{reflist}}
+
+[http://tasktools.org/projects/taskd.html Taskserver Home Page]
+[http://taskwarrior.org/docs/#taskd Taskwarrior Documentation]
+[http://github.com/taskwarrior/taskd Source Code]
+
