@@ -2,6 +2,9 @@
 $logo-red: #E16E6F
 $nearly-black: #252525
 $sky: #00CAD8
+$dirt: #29C3D1
+$building: #2293A1
+$dark-building: darken($building, 15%)
 $button-blue: #1271C3
 $button-blue-dark: #0A4985
 $button-blue-medium: #0B56A4
@@ -10,13 +13,13 @@ $grey-light: #C2C2C2
 $mustard-yellow: #EDDA34
 $lime-green: #43B77A
 
-$content-width: 1350px
-$logo-size: 246px
+$content-width: 1050px
+$logo-size: 200px
 $really-big: 1000px
 $button-border-radius: 7px
-$indent-0: 20%
-$indent-1: $indent-0 + 5%
-$indent-2: $indent-1 + 5%
+$indent-0: 18%
+$indent-1: $indent-0 + 3%
+$indent-2: $indent-1 + 3%
 
 
 
@@ -26,10 +29,14 @@ body
     background-color: $nearly-black
     box-sizing: border-box
 
+.center
+    text-align: center
+
 section
     position: relative
     padding-top: 2rem
     padding-bottom: 2rem
+    padding-right: 2rem
     &.generate
         height: 64mm
     &.first-color
@@ -44,21 +51,24 @@ section
     margin: 0 auto
 
 #header
-    height: 554px
+    height: 101mm
     position: relative
     width: 100%
-    border: 1px solid $nearly-black
-
+    border-top: 1px solid $nearly-black // This is just to make the margin-top display correctly
 
     #cityscape
-        margin-top: 139px
-        padding-top: 322px
+        position: relative
+        margin-top: $logo-size * 0.29
+        padding-top: 201px
         background: url('images/city_background.png')
         // Put the logo right in between the two tallest fat buildings
-        background-position: -474mm 72mm
-        height: 27mm
+        background-position: 185mm 75mm
+        height: 130mm
+        z-index: -1
         #subtitle
-            text-align: center
+            font-size: 56%
+            padding-left: 32mm
+            color: $dark-building
 
     #logo
         position: absolute
@@ -72,20 +82,21 @@ section
         h1
             color: $logo-red
             text-transform: uppercase
-            font-size: 79px
+            font-size: $logo-size * 0.3
             line-height: 1
-            padding-top: 56px
+            padding-top: $logo-size * 0.19
             span
-                font-size: 63px
+                font-size: $logo-size * 0.23
                 line-height: 1
                 display: inline-block
                 margin-top: -3px
 
 #the-rest
-    background-color: $sky
+    background-color: $dirt
 
 p
     padding: 2mm 10mm
+    font-size: 75%
 
 
 a
@@ -103,8 +114,7 @@ a
     border-radius: $button-border-radius
     border: none
     display: block
-    &:hover
-        background-color: darken($button-blue, 5%)
+    cursor: pointer
     &.file-download
         width: 14rem
         background: $button-blue url('images/down-arrow-smaller.png') no-repeat right 11px center
@@ -112,11 +122,15 @@ a
         text-align: left
         margin-left: $indent-1
         margin-bottom: 0.7rem
+        &:hover
+            background-color: $button-blue-dark
 
     &#generate
-        width: 25ex
+        width: 30ex
         background: $button-blue url('images/key.png') no-repeat right 11px center
         margin: 0 auto 0.6rem
+        &:hover
+            background-color: $button-blue-dark
 
 h1, h2, h3, h4, div, instruct, warn, command, man, input
     box-sizing: border-box
@@ -167,21 +181,25 @@ h3
 
 
 instruct
-    margin-top: 2mm
+    margin-top: 8mm
     margin-bottom: 6mm
     margin-left: $indent-1
     font-size: 0.7rem
+    display: block
+    span.normal-case
+        font-size: 0.8rem
+        text-transform: none
+        font-family: monospace
+    span.diagnostics
+        font-size: 0.9rem
+        text-transform: none
+        font-family: monospace
+        font-weight: 100
+        font-style: italic
 
 
 .clear
     clear: both
-
-
-instruct, warn
-    margin-bottom: 2mm
-    display: block
-
-
 
 
 command
@@ -189,7 +207,7 @@ command
     font-family: monospace
     font-weight: 100
     text-transform: none
-    margin: 0 0 2mm $indent-1
+    margin: 0 2mm 2mm $indent-1
     background-color: $grey-light
     color: $nearly-black
     padding: 0mm 4mm
@@ -207,20 +225,33 @@ command
 
 #footer
     text-align: center
-    padding: 10mm
+    padding: 6mm 0 15mm
     background-color: $nearly-black
-    font-size: 78%
+    font-size: 0.5rem
+    font-weight: 100
+    a
+        color: white
+        text-decoration: underline
 
 
+
+space#generate
+    height: 10mm
+    display: block
 
 man
     position: absolute
-    top: 0mm
-    left: 13mm
+    top: 0.4rem
+    left: 1mm
     z-index: 1
     img
         height: 7.5rem
-man.tada
-    img
-        height: 10rem
-    img
+    &#generate
+        left: 34mm
+        top: 3mm
+    &.tada
+        img
+            height: 10rem
+            position: relative
+            left: -2rem
+            top: -0.9rem

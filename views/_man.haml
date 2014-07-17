@@ -1,6 +1,7 @@
 :ruby
   type = locals[:type]
+  id = locals[:id]
   raise ArgumentError, 'type required' unless type
 
-%man{class: type}
+%man{class: type, id: id}
   %image{src: "images/man_#{type}.png"}

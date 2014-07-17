@@ -1,0 +1,52 @@
+{{Infobox website
+| name                 = FreeCinc
+| logo                 =
+| logocaption          =
+| screenshot           =
+| collapsible          =
+| collapsetext         =
+| caption              =
+| url                  = http://freecinc.com
+| slogan               =
+| commercial           =
+| type                 =
+| registration         =
+| language             =
+| num_users            =
+| content_license      =
+| programming language =
+| owner                =
+| author               =
+| editor               =
+| launch_date          = July 2, 2014
+| revenue              =
+| alexa                =
+| ip                   =
+| current_status       = Beta
+| footnotes            =
+}}
+
+'''FreeCinc''' is a free hosted service that runs [[Taskserver]]. Since it is inconvenient for some users of say [[TaskWarrior]] or Mirakel to also host and manage their own Taskserver installation, '''FreeCinc''' was created to fill in the gap. '''Freecinc''' generates the certificates that are required for syncing with TaskServer and allows you to download them. '''FreeCinc''' also walks you through basic configuration. If you save the configuration page that '''FreeCinc''' gives you, you can use the same certificates to set up multiple clients to sync together.
+
+==Taskserver Version==
+
+FreeCinc is currently running Taskserver 1.0.0.
+
+==Supported Clients==
+
+FreeCinc currently supports [[Taskwarrior]] 2.3.0, and may support others as well, such as the Android app Mirakel.
+
+==History==
+
+'''FreeCinc''' was launched on July 2, 2014.
+
+
+==References==
+{{reflist}}
+
+* [http://freecinc.com FreeCinc Home Page]
+* [http://freecinc.com/generate Typical FreeCinc Configuration]
+* [http://freecinc.com/about.html About FreeCinc]
+* [http://github.com/taskwarrior/taskd Taskserver Source Code]
+* [http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Mirakel-Android-Task-Manager-that-Syncs-with-Taskwarrior Syncing Mirakel with Taskd]
+* [http://taskwarrior.org/docs/server_why.html Why do I Need a Taskserver?]

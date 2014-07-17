@@ -7,9 +7,9 @@
   ca_filename =   "#{user.name}.ca.pem"
 
 
-%p Your keys have been generated! You may want to save a copy of this we page for future reference---especially if you want to be able to configure multiple clients.
-
-%h2 Configuration
+%p.center
+  Your keys have been generated...let's get started!
+%space#generate
 
 %section.first-color
   =haml :_man, locals: {type: :point}
@@ -29,7 +29,7 @@
     .label Step 2:
     %h3 Save Keys
 
-  %instruct Save the following files to your ~/.task directory
+  %instruct Save the following files to your <span class='normal-case'>~/.task</span> directory
 
   = haml :file_download, locals: { password: user.password, filename: key_filename }
   = haml :file_download, locals: { password: user.password, filename: cert_filename }
@@ -66,11 +66,11 @@
   .step
     .label Step 4:
     %h3 Verify
-  %instruct Run the diagnostic tool to make sure that your keys are present and readable, and that the server is properly set
+  %instruct Run the diagnostic tool
 
   %command task diagnostics
 
-  %instruct Make sure that in the output, 'CA', 'Cert', and 'Key' are all readable, and make sure that you have a value for 'Server'
+  %instruct and make sure that in the output <span class='diagnostics'>CA</span>, <span class='diagnostics'>Cert</span>, and <span class='diagnostics'>Key</span> are all readable. Also ensure that you have a value for <span class='diagnostics'>Server</span>
 
 
 %section.second-color
@@ -82,4 +82,14 @@
 
   %instruct The moment you've been waiting for!
   %command task sync init
+
+
+%section.second-color
+  /=haml :_man, locals: {type: :inspect}
+
+  .step
+    .label Step 6:
+    %h3 Save This
+
+  %instruct (optional) If you want to sync other clients to this same account, save a copy of this webpage so you can use it to set up your other machine.
 

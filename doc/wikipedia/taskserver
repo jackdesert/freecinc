@@ -1,7 +1,3 @@
-{{User sandbox}}
-<!-- EDIT BELOW THIS LINE -->
-
-
 {{Infobox software
 | name = Taskserver
 | author = Paul Beckingham
@@ -18,7 +14,9 @@
 }}
 
 
-'''Taskserver''', also known as '''taskd''',  is an open-source server daemon that allows users to sync their task data between multiple devices.
+'''Taskserver''', also known as '''taskd''' or '''TaskWarrior-Server''',  is an open-source server daemon that allows users to sync their task data between multiple devices. While apps such as TaskWarrior provide convenient command-line access to editing a task list, in order to make that solution portable across devices there must be a way to sync tasks between two devices owned by the same user. Taskserver provides just such a solution.
+
+When a client is configured for use with Taskserver, the Taskserver provides a public key pair which will later be used the client in order to authenticate itself. Any two clients (even when running on different platforms) that sync using this generated keypair will share a common set of tasks.
 
 
 ==Security==
@@ -28,7 +26,7 @@ Security is provided through public-key encryption, and knowledge of a shared ke
 
 ==Supported Clients==
 
-Taskserver currently supports [[Taskwarrior]] 2.3.0
+Taskserver currently supports [[Taskwarrior]] 2.3.0 and the Android app Mirakel.
 
 
 ==History==
@@ -39,7 +37,12 @@ Development began in September 2012
 ==References==
 {{reflist}}
 
-[http://tasktools.org/projects/taskd.html Taskserver Home Page]
-[http://taskwarrior.org/docs/#taskd Taskwarrior Documentation]
-[http://github.com/taskwarrior/taskd Source Code]
-
+* [http://tasktools.org/projects/taskd.html Taskserver Home Page]
+* [http://github.com/taskwarrior/taskd Taskserver Source Code]
+* [http://freecinc.com FreeCinc (A hosted Taskserver solution)]
+* [http://taskwarrior.org/docs/server_why.html Why Do I Need a TaskServer?]
+* [http://taskwarrior.org/docs/server_configure.html Taskserver Configuration]
+* [http://taskwarrior.org/docs/server_setup.html Taskserver Troubleshooting Guide]
+* [http://mirakel.azapps.de/taskwarrior.html Configuring Taskserver for Mirakel]
+* [http://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Mirakel-Android-Task-Manager-that-Syncs-with-Taskwarrior Syncing Mirakel with Taskd]
+* [http://taskwarrior.org/docs/#taskd Taskwarrior Documentation]

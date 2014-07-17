@@ -4,10 +4,14 @@ body {
   background-color: #252525;
   box-sizing: border-box; }
 
+.center {
+  text-align: center; }
+
 section {
   position: relative;
   padding-top: 2rem;
-  padding-bottom: 2rem; }
+  padding-bottom: 2rem;
+  padding-right: 2rem; }
   section.generate {
     height: 64mm; }
   section.first-color {
@@ -17,28 +21,32 @@ section {
 
 #content {
   width: 100%;
-  max-width: 1350px;
+  max-width: 1050px;
   font-size: 30px;
   margin: 0 auto; }
 
 #header {
-  height: 554px;
+  height: 101mm;
   position: relative;
   width: 100%;
-  border: 1px solid #252525; }
+  border-top: 1px solid #252525; }
   #header #cityscape {
-    margin-top: 139px;
-    padding-top: 322px;
+    position: relative;
+    margin-top: 58.0px;
+    padding-top: 201px;
     background: url("images/city_background.png");
-    background-position: -474mm 72mm;
-    height: 27mm; }
+    background-position: 185mm 75mm;
+    height: 130mm;
+    z-index: -1; }
     #header #cityscape #subtitle {
-      text-align: center; }
+      font-size: 56%;
+      padding-left: 32mm;
+      color: #155962; }
   #header #logo {
     position: absolute;
-    left: 552px;
-    width: 246px;
-    height: 246px;
+    left: 425px;
+    width: 200px;
+    height: 200px;
     border: 12px solid #252525;
     border-radius: 1000px;
     margin: 0 auto;
@@ -46,20 +54,21 @@ section {
     #header #logo h1 {
       color: #e16e6f;
       text-transform: uppercase;
-      font-size: 79px;
+      font-size: 60px;
       line-height: 1;
-      padding-top: 56px; }
+      padding-top: 38px; }
       #header #logo h1 span {
-        font-size: 63px;
+        font-size: 46px;
         line-height: 1;
         display: inline-block;
         margin-top: -3px; }
 
 #the-rest {
-  background-color: #00cad8; }
+  background-color: #29c3d1; }
 
 p {
-  padding: 2mm 10mm; }
+  padding: 2mm 10mm;
+  font-size: 75%; }
 
 a {
   text-decoration: none; }
@@ -73,27 +82,30 @@ a {
   box-shadow: 0px 11px 0px #0a4985;
   border-radius: 7px;
   border: none;
-  display: block; }
-  .looks-like-button:hover {
-    background-color: #1063ac; }
+  display: block;
+  cursor: pointer; }
   .looks-like-button.file-download {
     width: 14rem;
     background: #1271c3 url("images/down-arrow-smaller.png") no-repeat right 11px center;
     padding: 0.7rem;
     text-align: left;
-    margin-left: 25%;
+    margin-left: 21%;
     margin-bottom: 0.7rem; }
+    .looks-like-button.file-download:hover {
+      background-color: #0a4985; }
   .looks-like-button#generate {
-    width: 25ex;
+    width: 30ex;
     background: #1271c3 url("images/key.png") no-repeat right 11px center;
     margin: 0 auto 0.6rem; }
+    .looks-like-button#generate:hover {
+      background-color: #0a4985; }
 
 h1, h2, h3, h4, div, instruct, warn, command, man, input {
   box-sizing: border-box; }
 
 .step {
   position: relative;
-  left: 20%;
+  left: 18%;
   display: inline-block;
   width: 25ex;
   background-color: #1174ba;
@@ -131,24 +143,31 @@ h3 {
   font-size: 120%; }
 
 instruct {
-  margin-top: 2mm;
+  margin-top: 8mm;
   margin-bottom: 6mm;
-  margin-left: 25%;
-  font-size: 0.7rem; }
+  margin-left: 21%;
+  font-size: 0.7rem;
+  display: block; }
+  instruct span.normal-case {
+    font-size: 0.8rem;
+    text-transform: none;
+    font-family: monospace; }
+  instruct span.diagnostics {
+    font-size: 0.9rem;
+    text-transform: none;
+    font-family: monospace;
+    font-weight: 100;
+    font-style: italic; }
 
 .clear {
   clear: both; }
 
-instruct, warn {
-  margin-bottom: 2mm;
-  display: block; }
-
 command {
-  margin-left: 25%;
+  margin-left: 21%;
   font-family: monospace;
   font-weight: 100;
   text-transform: none;
-  margin: 0 0 2mm 25%;
+  margin: 0 2mm 2mm 21%;
   background-color: #c2c2c2;
   color: #252525;
   padding: 0mm 4mm;
@@ -157,17 +176,30 @@ command {
 
 #footer {
   text-align: center;
-  padding: 10mm;
+  padding: 6mm 0 15mm;
   background-color: #252525;
-  font-size: 78%; }
+  font-size: 0.5rem;
+  font-weight: 100; }
+  #footer a {
+    color: white;
+    text-decoration: underline; }
+
+space#generate {
+  height: 10mm;
+  display: block; }
 
 man {
   position: absolute;
-  top: 0mm;
-  left: 13mm;
+  top: 0.4rem;
+  left: 1mm;
   z-index: 1; }
   man img {
     height: 7.5rem; }
-
-man.tada img {
-  height: 10rem; }
+  man#generate {
+    left: 34mm;
+    top: 3mm; }
+  man.tada img {
+    height: 10rem;
+    position: relative;
+    left: -2rem;
+    top: -0.9rem; }
