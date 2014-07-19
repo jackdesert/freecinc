@@ -1,6 +1,8 @@
 module ViewHelper
   SERVER_NAME        =  'http://freecinc.com'
   SECURE_SERVER_NAME = 'https://freecinc.com'
+  LOCAL_IMAGE_PATH = 'images/'
+  REMOTE_IMAGE_PATH = "#{SECURE_SERVER_NAME}/#{LOCAL_IMAGE_PATH}"
 
   def link_to(url, text)
     "<a href='#{url}'>#{text}</a>"
@@ -29,10 +31,11 @@ module ViewHelper
   private
   def production?
     url('some_file').include?('freecinc.com')
+    true
   end
 
   def stylesheets_production
-    read_stylesheet('reset.css') + read_stylesheet('style.css')
+    insert_stylesheet('reset.css') + insert_stylesheet('style.css')
   end
 
   def stylesheets_development
@@ -40,13 +43,18 @@ module ViewHelper
     <link rel='stylesheet' type='text/css' href='style.css'>"
   end
 
-  def read_stylesheet(filename)
-    contents = File.read("#{settings.root}/public/#{filename}")
+  def insert_stylesheet(filename)
+    contents = read_stylesheet_with_absolute_image_path(filename)
     output = "<!-- Stylesheet '#{filename}' -->\n"
     output += "<style>\n"
     output += contents
     output += "</style>\n\n"
     output
+  end
+
+  def read_stylesheet_with_absolute_image_path(filename)
+    contents = File.read("#{settings.root}/public/#{filename}")
+    contents.gsub(LOCAL_IMAGE_PATH, REMOTE_IMAGE_PATH)
   end
 
 end
