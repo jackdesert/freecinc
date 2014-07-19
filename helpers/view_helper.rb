@@ -11,15 +11,42 @@ module ViewHelper
   end
 
   def stylesheets
-    "<link rel='stylesheet' type='text/css' href='reset.css'>
-    <link rel='stylesheet' type='text/css' href='style.css'>"
+    if production?
+      stylesheets_production
+    else
+      stylesheets_development
+    end
   end
+
 
   def secure_url(relative_url)
     # Production urls should use https
     # localhost urls should keep http
     absolute_url = url(relative_url)
     absolute_url.sub(SERVER_NAME, SECURE_SERVER_NAME)
+  end
+
+  private
+  def production?
+    url('some_file').include?('freecinc.com')
+  end
+
+  def stylesheets_production
+    read_stylesheet('reset.css') + read_stylesheet('style.css')
+  end
+
+  def stylesheets_development
+    "<link rel='stylesheet' type='text/css' href='reset.css'>
+    <link rel='stylesheet' type='text/css' href='style.css'>"
+  end
+
+  def read_stylesheet(filename)
+    contents = File.read("#{settings.root}/public/#{filename}")
+    output = "<!-- Stylesheet '#{filename}' -->\n"
+    output += "<style>\n"
+    output += contents
+    output += "</style>\n\n"
+    output
   end
 
 end
