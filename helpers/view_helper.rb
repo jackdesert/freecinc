@@ -28,10 +28,20 @@ module ViewHelper
     absolute_url.sub(SERVER_NAME, SECURE_SERVER_NAME)
   end
 
+
+  def image_path(text)
+    if production?
+      # Load images from the remote url
+      text.gsub(LOCAL_IMAGE_PATH, REMOTE_IMAGE_PATH)
+    else
+      # Load images locally (faster for development)
+      text
+    end
+  end
+
   private
   def production?
     url('some_file').include?('freecinc.com')
-    true
   end
 
   def stylesheets_production
@@ -44,7 +54,7 @@ module ViewHelper
   end
 
   def insert_stylesheet(filename)
-    contents = read_stylesheet_with_absolute_image_path(filename)
+    contents = read_stylesheet_and_use_appropriate_image_path(filename)
     output = "<!-- Stylesheet '#{filename}' -->\n"
     output += "<style>\n"
     output += contents
@@ -52,9 +62,9 @@ module ViewHelper
     output
   end
 
-  def read_stylesheet_with_absolute_image_path(filename)
+  def read_stylesheet_and_use_appropriate_image_path(filename)
     contents = File.read("#{settings.root}/public/#{filename}")
-    contents.gsub(LOCAL_IMAGE_PATH, REMOTE_IMAGE_PATH)
+    image_path(contents)
   end
 
 end
