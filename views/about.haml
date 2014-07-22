@@ -1,0 +1,64 @@
+:ruby
+  task= "<a href='http://taskwarrior.org'>TaskWarrior</a>"
+  taskd = "<a href='http://taskwarrior.org/docs/#taskd'>TaskServer</a>"
+  dropbox = "<a href='http://dropbox.com'>DropBox</a>"
+  jack = "<a href='mailto:jackdesert@gmail.com'>JackDesert@gmail.com</a>"
+
+%html
+  %h1 About FreeCinc
+
+  %question In a Nutshell
+  %answer FreeCinc is a hosted implementation of TaskServer, which makes it easy for anyone using TaskWarrior to sync their tasks with a central server without having to manage and host their own Taskserver. And it's free!
+
+  %question Why does it Exist?
+  %answer= "So you discovered #{task}. Pretty neat that you can manage your tasks from command line, eh? But now you want to have the same tasks on your work computer as your home laptop. What to do?"
+
+  %answer="One option is to let your <span class='monospace'>~/.task</span> folder be managed by #{dropbox}. Easy to set up, but with #{dropbox} 'last write wins', so you may end up with merge conflicts."
+
+  %answer="The other option is to set up the new #{taskd} software on a server and configure #{task} to sync to it. This is not for the faint of heart, but if that's your bag, go for it!"
+
+  %answer="Once I got my #{taskd} set up and syncing with #{task} I thought, 'Why not share this with the world?'. And FreeCinc was born."
+
+  %answer FreeCinc is a free syncing service for users of TaskWarrior (or any client that sync with TaskServer).
+
+  %question A Short History
+  %answer
+    %ul
+      %li July 2, 2014 Initial launch
+      %li July 17, 2014 Artwork added
+      %li July 23, 2014 About page added
+
+
+  %question Is it Really Free?
+
+  %answer FreeCinc is a free service. Anyone can generate a keypair and sync their tasks at no charge.
+
+
+  %question Are my tasks secure?
+  %answer Your tasks are fairly secure with us. Improvements are currently being made in the Taskserver software to provide better isolation between users, and as newer releases of Taskserver come out, our security will only get better. If for some reason you have great reason to need completely secure solution for task syncing (maybe you are running for president or something), you are welcome to set up and host your own taskserver.
+
+
+  %question How do I sync between two different devices?
+
+  %answer In order to sync between two different devices (a work laptop and a home laptop, for instance), you need to configure your client the same on both laptops. The way to do this is to visit the '/generate' page, and configure your first laptop from it. Then save a copy of the '/generate' page and open the saved web page from your second laptop. Use the saved web page to configure your second laptop.
+
+
+  %question Troubleshooting
+  %answer
+    %ul
+      %li Check your Taskwarrior version. 2.3.0 or greater is supported.
+      %li Run `task diagnostics`. Verify that all three keys that you downloaded from freecinc show up as 'readable'.
+      %li Try running the configuration steps again, either from the '/generate' page that you saved for later, or visit the '/generate' page again, download new keys, and configure from scratch.
+      %li If running TaskWarrior, one way to completely wipe out your configuration is to simply remove the ~/.taskrc file. This does not remove your tasks, just wipes out your configuration. The next time you run TaskWarrior you will be asked if you would like to generate a fresh config.
+
+
+
+  %question It's still not working---what do I do?
+  %answer="If the instructions seem unclear, or if you suspect there may be a bug in FreeCinc, send an email to #{jack}."
+
+
+  %question I have a suggestion
+  %answer="Great! Please send suggestions to #{jack}."
+
+
+

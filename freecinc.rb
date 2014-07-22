@@ -43,6 +43,10 @@ get '/generate' do
   haml :generate, locals: locals
 end
 
+get '/about' do
+  haml :about
+end
+
 post '/download/:filename' do |filename|
   content_type 'application/octet-stream'
 

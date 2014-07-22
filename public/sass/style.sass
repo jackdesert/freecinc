@@ -4,6 +4,7 @@ $nearly-black: #252525
 $sky: #00CAD8
 $dirt: #29C3D1
 $building: #2293A1
+$medium-dark-building: darken($building, 8%)
 $dark-building: darken($building, 15%)
 $button-blue: #1271C3
 $button-blue-dark: #0A4985
@@ -93,6 +94,7 @@ section
 
 #the-rest
     background-color: $dirt
+    padding-bottom: 1rem
 
 p
     padding: 2mm 10mm
@@ -258,3 +260,32 @@ man
             position: relative
             left: -2rem
             top: -0.9rem
+
+question, answer
+    display: block
+    text-transform: none
+    padding: 0 1rem
+    li
+        margin-left: 1rem
+    li + li
+        padding-top: 0.3rem
+
+question
+    font-size: 1rem
+answer, answer li
+    font-weight: 100
+    font-size: 0.6rem
+    a
+        color: $medium-dark-building
+        &:hover
+            text-decoration: underline
+    span.monospace
+        font-size: 0.6rem
+        font-family: monospace
+
+answer + answer
+    padding-top: 0.5rem
+answer + question
+    padding-top: 1rem
+
+

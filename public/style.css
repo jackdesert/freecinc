@@ -64,7 +64,8 @@ section {
         margin-top: -3px; }
 
 #the-rest {
-  background-color: #29c3d1; }
+  background-color: #29c3d1;
+  padding-bottom: 1rem; }
 
 p {
   padding: 2mm 10mm;
@@ -207,3 +208,32 @@ man {
     position: relative;
     left: -2rem;
     top: -0.9rem; }
+
+question, answer {
+  display: block;
+  text-transform: none;
+  padding: 0 1rem; }
+  question li, answer li {
+    margin-left: 1rem; }
+  question li + li, answer li + li {
+    padding-top: 0.3rem; }
+
+question {
+  font-size: 1rem; }
+
+answer, answer li {
+  font-weight: 100;
+  font-size: 0.6rem; }
+  answer a, answer li a {
+    color: #1b747f; }
+    answer a:hover, answer li a:hover {
+      text-decoration: underline; }
+  answer span.monospace, answer li span.monospace {
+    font-size: 0.6rem;
+    font-family: monospace; }
+
+answer + answer {
+  padding-top: 0.5rem; }
+
+answer + question {
+  padding-top: 1rem; }
