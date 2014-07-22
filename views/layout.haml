@@ -4,6 +4,7 @@
   %body
     #content
       #header
+        = haml :_navigation
         #logo
           %h1
             Free
@@ -19,6 +20,6 @@
 
       #footer
         created by
-        %a{href: 'mailto:jackdesert@gmail.com?subject=FreeCinc%20Help'}
+        %a{href: "mailto:#{author_email}?subject=FreeCinc%20Help"}
           Jack Desert
 

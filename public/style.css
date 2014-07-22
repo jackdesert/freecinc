@@ -237,3 +237,21 @@ answer + answer {
 
 answer + question {
   padding-top: 1rem; }
+
+#navigation {
+  position: absolute;
+  top: -1px;
+  right: 0px;
+  width: 100mm; }
+  #navigation a {
+    border-radius: 1rem 0;
+    font-weight: 100;
+    margin: 1px;
+    padding: 0.1rem 0.2rem;
+    float: right;
+    font-size: 0.3rem;
+    color: white; }
+    #navigation a.active {
+      background-color: #155962; }
+    #navigation a:hover {
+      background-color: #0f4249; }

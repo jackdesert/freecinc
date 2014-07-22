@@ -4,6 +4,22 @@ module ViewHelper
   LOCAL_IMAGE_PATH = 'images/'
   REMOTE_IMAGE_PATH = "#{SECURE_SERVER_NAME}/#{LOCAL_IMAGE_PATH}"
 
+  def root_path
+    '/'
+  end
+
+  def generate_path
+    '/freecinc_uniquely_generated_instructions'
+  end
+
+  def about_path
+    '/about'
+  end
+
+  def author_email
+    'JackDesert@gmail.com'
+  end
+
   def link_to(url, text)
     "<a href='#{url}'>#{text}</a>"
   end
@@ -39,7 +55,20 @@ module ViewHelper
     end
   end
 
+  def on_home_page?
+    path_info == root_path
+  end
+
+  def on_about_page?
+    path_info == about_path
+  end
+
   private
+
+  def path_info
+    env['PATH_INFO']
+  end
+
   def production?
     url('some_file').include?('freecinc.com')
   end

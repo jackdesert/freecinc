@@ -23,9 +23,11 @@ require 'json'
 require './helpers/view_helper'
 
 
-class Sinatra::Application
-  include ViewHelper
-end
+
+# include ViewHelper here so that it is both accessible in view
+# and accessible in this file
+include ViewHelper
+
 
 # Require all your models manually here
  require './models/user'
@@ -34,16 +36,16 @@ end
 
 
 
-get '/' do
+get root_path do
   haml :index
 end
 
-get '/generate' do
+get generate_path do
   locals = {user: User.new}
   haml :generate, locals: locals
 end
 
-get '/about' do
+get about_path do
   haml :about
 end
 

@@ -288,4 +288,20 @@ answer + answer
 answer + question
     padding-top: 1rem
 
-
+#navigation
+    position: absolute
+    top: -1px
+    right: 0px
+    width: 100mm
+    a
+        border-radius: 1rem 0
+        font-weight: 100
+        margin: 1px
+        padding: 0.1rem 0.2rem
+        float: right
+        font-size: 0.3rem
+        color: white
+        &.active
+            background-color: $dark-building
+        &:hover
+            background-color: darken($dark-building, 6%)
