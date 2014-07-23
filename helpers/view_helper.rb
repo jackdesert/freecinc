@@ -9,7 +9,7 @@ module ViewHelper
   end
 
   def generate_path
-    '/freecinc_uniquely_generated_instructions'
+    '/generated_keys'
   end
 
   def about_path

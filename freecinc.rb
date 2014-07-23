@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/contrib'
 require 'pry'
 require 'yaml'
 require 'haml'

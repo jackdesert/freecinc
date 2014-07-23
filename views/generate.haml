@@ -6,6 +6,8 @@
   cert_filename = "#{user.name}.cert.pem"
   ca_filename =   "#{user.name}.ca.pem"
 
+  content_for(:title) { "#{user.name}_instructions" }
+
 
 %p.center
   Your keys have been generated...let's get started!

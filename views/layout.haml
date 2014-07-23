@@ -1,7 +1,11 @@
 !!! 5
+:ruby
+  title = yield_content(:title)
+  default_title = "FreeCinc: a Hosted Solution for Syncing your TaskWarrior Client"
+  title = default_title if title.empty?
 %html
   %head
-    %title FreeCinc: a Hosted Solution for Syncing your TaskWarrior Client
+    %title= title
     = stylesheets
   %body
     #content

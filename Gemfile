@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'sinatra'
+gem 'sinatra-contrib' # provides Sinatra::ContentFor
 gem 'pry-byebug'
 gem 'rr', require: false
 gem 'guard-rspec'
