@@ -1,0 +1,31 @@
+16:34 < Unode> jackdesert, Provide a link to a page with the conditions of the service and we will likely add a section for "Community servers"
+jackdesert, I'm not a lawyer but there's the issue of data privacy. As it stands, taskd only provides safe communication, not safe storage. Users should be aware that you as server administrator will have access to
+               their tasks.
+
+16:47 < Unode> jackdesert, hopefully at some point this will be less painful by having taskd available in most repositories.
+16:51 < Unode> There's also the security side but apart from making sure you don't get hacked, there's not much more you can do.
+16:50 < Unode> jackdesert, apart from the data privacy issue, I don't see any problem. Perhaps some reference to backups in case of hardware failure.
+
+is not responsible for loss or
+
+Look at other examples of terms. Dropbox, for example
+
+What we collect
+
+Note thate we have no personally-identifying information about you---that is, except for the actual content of your tasks. Were we to be hacked, the attackedr would have to play detective to figure out whose data s/he is looking at
+
+Usage. We collect information from and about the devices you use to access the Services. This includes things like IP addresses, the type of browser and device you use, the web page you visited before coming to our sites, and identifiers associated with your devices. Your devices (depending on their settings) may also transmit location information to the Services.
+
+What we share
+
+
+
+Law & Order. We may disclose your information to third parties if we determine that such disclosure is reasonably necessary to (a) comply with the law; (b) protect any person from death or serious bodily injury; (c) prevent fraud or abuse of Dropbox or our users; or (d) protect Dropbox's property rights.
+
+
+
+Security. We have a team dedicated to keeping your information secure and testing for vulnerabilities. We also continue to work on features to keep your information safe in addition to things like two-factor authentication, encryption of files at rest, and alerts when new devices and apps are linked to your account.
+
+Retention. We'll retain information you store on our Services for as long as we need it to provide you the Services. If you delete your account, we'll also delete this information. But please note: (1) there might be some latency in deleting this information from our servers and back-up storage; and (2) we may retain this information if necessary to comply with our legal obligations, resolve disputes, or enforce our agreements.
+
+ Have questions or concerns about Dropbox, our Services and privacy? Contact us at privacy@dropbox.com.
