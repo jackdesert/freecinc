@@ -175,7 +175,7 @@ describe CopyForge do
   describe '.generate_password_from_user_name' do
     it do
       copy_forge = described_class.new('hungry_monkey', 'anything')
-      copy_forge.send(:generate_password_from_user_name).should == '9ead8103d56db2343ebf49daba6e958154779177'
+      copy_forge.send(:generate_password_from_user_name).should == 'a24bcb407e7aae39109dc8f85f12664347cead15'
     end
   end
 
@@ -186,7 +186,7 @@ describe CopyForge do
     context 'when username and password match' do
       it 'returns true' do
         # Note to get the correct password value, just change the SEED, run this test, and paste in what it expected
-        copy_forge = described_class.new('hungry_monkey', '9ead8103d56db2343ebf49daba6e958154779177')
+        copy_forge = described_class.new('hungry_monkey', 'a24bcb407e7aae39109dc8f85f12664347cead15')
         copy_forge.send(:authenticated?).should be_true
       end
     end
@@ -194,7 +194,7 @@ describe CopyForge do
     context 'when username and password do not match' do
       it 'returns false' do
         # Note to get the correct password value, just change the SEED, run this test, and paste in what it expected
-        copy_forge = described_class.new('not_a_hungry_monkey', '9ead8103d56db2343ebf49daba6e958154779177')
+        copy_forge = described_class.new('not_a_hungry_monkey', 'a24bcb407e7aae39109dc8f85f12664347cead15')
         copy_forge.send(:authenticated?).should be_false
       end
     end

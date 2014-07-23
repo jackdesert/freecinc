@@ -19,8 +19,8 @@ describe '/' do
   end
 end
 
-describe '/generate' do
-  subject { browser.get '/generate' }
+describe '/generated_keys' do
+  subject { browser.get '/generated_keys' }
   it 'returns 200' do
     subject.status.should == 200
     (subject.body.length > 2000).should be_true
