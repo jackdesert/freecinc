@@ -4,60 +4,60 @@
   dropbox = "<a href='http://dropbox.com'>DropBox</a>"
   jack = "<a href='mailto:#{author_email}'>#{author_email}</a>"
 
-%html
-  %h1 About
 
-  %question In a Nutshell
-  %answer="FreeCinc is a hosted implementation of #{taskd}, which makes it easy for anyone using #{task} to sync their tasks with a central server without having to manage and host their own TaskServer. And it's free!"
+%h1 About
 
-  %question Why does it Exist?
-  %answer= "So you discovered #{task}. Pretty neat that you can manage your tasks from command line, eh? But now you want to have the same tasks on your work computer as your home laptop. What to do?"
+%question In a Nutshell
+%answer="FreeCinc is a hosted implementation of #{taskd}, which makes it easy for anyone using #{task} to sync their tasks with a central server without having to manage and host their own TaskServer. And it's free!"
 
-  %answer="One option is to let your <span class='monospace'>~/.task</span> folder be managed by #{dropbox}. Easy to set up, but with #{dropbox} 'last write wins', so you may end up with merge conflicts."
+%question Why does it Exist?
+%answer= "So you discovered #{task}. Pretty neat that you can manage your tasks from command line, eh? But now you want to have the same tasks on your work computer as your home laptop. What to do?"
 
-  %answer="The other option is to set up the new #{taskd} software on a server and configure #{task} to sync to it. This is not for the faint of heart, but if that's your bag, go for it!"
+%answer="One option is to let your <span class='monospace'>~/.task</span> folder be managed by #{dropbox}. Easy to set up, but with #{dropbox} 'last write wins', so you may end up with merge conflicts."
 
-  %answer="Once I got my #{taskd} set up and syncing with #{task} I thought, 'Why not share this with the world?'. And FreeCinc was born."
+%answer="The other option is to set up the new #{taskd} software on a server and configure #{task} to sync to it. This is not for the faint of heart, but if that's your bag, go for it!"
 
-
-  %question A Short History
-  %answer
-    %ul
-      %li July 2, 2014 Initial launch
-      %li July 17, 2014 Artwork added
-      %li July 23, 2014 About page added
+%answer="Once I got my #{taskd} set up and syncing with #{task} I thought, 'Why not share this with the world?'. And FreeCinc was born."
 
 
-  %question Is it Really Free?
-
-  %answer FreeCinc is a free service. Anyone can generate a keypair and sync their tasks at no charge.
-
-
-  %question Are my tasks secure?
-  %answer Your tasks are fairly secure with us. Improvements are currently being made in the TaskServer software to provide better isolation between users, and as newer releases of TaskServer come out, our security will only get better. If for some reason you have great reason to need completely secure solution for task syncing (maybe you are running for president or something), you are welcome to set up and host your own TaskServer.
-
-
-  %question How do I sync between two different devices?
-
-  %answer In order to sync between two different devices (a work laptop and a home laptop, for instance), you need to configure your client the same on both laptops. So after you click "Generate my Keys!" from the home page, work through the configuration steps on your first laptop. The last step will actually have you save a copy of that page so you can open it on your second laptop and configure it exactly the same as the first.
+%question A Short History
+%answer
+  %ul
+    %li July 2, 2014 Initial launch
+    %li July 17, 2014 Artwork added
+    %li July 23, 2014 About page added
 
 
-  %question Troubleshooting
-  %answer
-    %ul
-      %li Check your Taskwarrior version. Version 2.3.0 or greater is supported.
-      %li Run `task diagnostics`. Verify that all three keys that you downloaded from freecinc show up as 'readable'.
-      %li Try running the configuration steps again, either from the page you saved for later, or click "Generate my Keys!" from the home page again, download the newly generated keys, and configure anew.
-      %li One way to completely wipe out your TaskWarrior configuration is to simply remove the <span class='monospace'>~/.taskrc</span> file. This does not remove your tasks---but it does wipe out your configuration. The next time you run TaskWarrior you will be asked if you would like to generate a fresh config.
+%question Is it Really Free?
+
+%answer FreeCinc is a free service. Anyone can generate a keypair and sync their tasks at no charge.
+
+
+%question Are my tasks secure?
+%answer Your tasks are fairly secure with us. Improvements are currently being made in the TaskServer software to provide better isolation between users, and as newer releases of TaskServer come out, our security will only get better. If for some reason you have great reason to need completely secure solution for task syncing (maybe you are running for president or something), you are welcome to set up and host your own TaskServer.
+
+
+%question How do I sync between two different devices?
+
+%answer In order to sync between two different devices (a work laptop and a home laptop, for instance), you need to configure your client the same on both laptops. So after you click "Generate my Keys!" from the home page, work through the configuration steps on your first laptop. The last step will actually have you save a copy of that page so you can open it on your second laptop and configure it exactly the same as the first.
+
+
+%question Troubleshooting
+%answer
+  %ul
+    %li Check your Taskwarrior version. Version 2.3.0 or greater is supported.
+    %li Run `task diagnostics`. Verify that all three keys that you downloaded from freecinc show up as 'readable'.
+    %li Try running the configuration steps again, either from the page you saved for later, or click "Generate my Keys!" from the home page again, download the newly generated keys, and configure anew.
+    %li One way to completely wipe out your TaskWarrior configuration is to simply remove the <span class='monospace'>~/.taskrc</span> file. This does not remove your tasks---but it does wipe out your configuration. The next time you run TaskWarrior you will be asked if you would like to generate a fresh config.
 
 
 
-  %question It's still not working---what do I do?
-  %answer="If the instructions seem unclear, or if you suspect there may be a bug in FreeCinc, send an email to #{jack}."
+%question It's still not working---what do I do?
+%answer="If the instructions seem unclear, or if you suspect there may be a bug in FreeCinc, send an email to #{jack}."
 
 
-  %question I have a suggestion
-  %answer="Great! Please send suggestions to #{jack}."
+%question I have a suggestion
+%answer="Great! Please send suggestions to #{jack}."
 
 
 

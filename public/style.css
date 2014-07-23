@@ -55,8 +55,8 @@ section {
       color: #e16e6f;
       text-transform: uppercase;
       font-size: 60px;
-      line-height: 1;
-      padding-top: 38px; }
+      line-height: 0.8;
+      padding-top: 44px; }
       #header #logo h1 span {
         font-size: 46px;
         line-height: 1;

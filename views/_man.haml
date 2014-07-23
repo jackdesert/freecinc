@@ -5,4 +5,4 @@
   raise ArgumentError, 'type required' unless type
 
 %man{class: klass}
-  %image{src: image_path("images/man_#{type}.png")}
+  %image{src: image_path("images/man_#{type}.png"), alt: type.capitalize}
