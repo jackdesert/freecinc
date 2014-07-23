@@ -4,6 +4,7 @@ require 'pry'
 require 'yaml'
 require 'haml'
 
+# Note if you start via rackup this will be ignored
 set :port, 9952
 
 # Bind to 0.0.0.0 even in development mode for access from VM
@@ -23,7 +24,11 @@ env = ENV['RACK_ENV'] || 'development'
 require 'json'
 require './helpers/view_helper'
 
-
+class FreeCinc < Sinatra::Base
+  configure :production, :development do
+    enable :logging
+  end
+end
 
 # include ViewHelper here so that it is both accessible in view
 # and accessible in this file

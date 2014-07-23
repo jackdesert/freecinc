@@ -11,5 +11,6 @@ gem 'tux'
 gem 'haml', require: false
 gem 'rerun'
 gem 'sass', require: false
+gem 'thin'
 
 gem'rb-readline'

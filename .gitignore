@@ -12,3 +12,6 @@ config/location.yml
 
 # This is still on a shared dir with mac osx
 .DS_STORE
+
+# Logging
+log/
