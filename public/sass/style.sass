@@ -39,7 +39,7 @@ section
     padding-bottom: 2rem
     padding-right: 2rem
     &.generate
-        height: 64mm
+        height: 42mm
     &.first-color
         background-color: $mustard-yellow
     &.second-color
@@ -127,7 +127,7 @@ a
         &:hover
             background-color: $button-blue-dark
 
-    &#generate
+    &.generate
         width: 30ex
         background: $button-blue url('images/key.png') no-repeat right 11px center
         margin: 0 auto 0.6rem
@@ -240,7 +240,7 @@ command
 
 
 
-space#generate
+space.generate
     height: 10mm
     display: block
 
@@ -251,7 +251,7 @@ man
     z-index: 1
     img
         height: 7.5rem
-    &#generate
+    &.generate
         left: 34mm
         top: 3mm
     &.tada
@@ -299,7 +299,7 @@ answer + question
         margin: 1px
         padding: 0.1rem 0.2rem
         float: right
-        font-size: 0.3rem
+        font-size: 0.4rem
         color: white
         &.active
             background-color: $dark-building

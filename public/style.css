@@ -13,7 +13,7 @@ section {
   padding-bottom: 2rem;
   padding-right: 2rem; }
   section.generate {
-    height: 64mm; }
+    height: 42mm; }
   section.first-color {
     background-color: #edda34; }
   section.second-color {
@@ -94,11 +94,11 @@ a {
     margin-bottom: 0.7rem; }
     .looks-like-button.file-download:hover {
       background-color: #0a4985; }
-  .looks-like-button#generate {
+  .looks-like-button.generate {
     width: 30ex;
     background: #1271c3 url("images/key.png") no-repeat right 11px center;
     margin: 0 auto 0.6rem; }
-    .looks-like-button#generate:hover {
+    .looks-like-button.generate:hover {
       background-color: #0a4985; }
 
 h1, h2, h3, h4, div, instruct, warn, command, man, input {
@@ -189,7 +189,7 @@ command {
     color: white;
     text-decoration: underline; }
 
-space#generate {
+space.generate {
   height: 10mm;
   display: block; }
 
@@ -200,7 +200,7 @@ man {
   z-index: 1; }
   man img {
     height: 7.5rem; }
-  man#generate {
+  man.generate {
     left: 34mm;
     top: 3mm; }
   man.tada img {
@@ -249,7 +249,7 @@ answer + question {
     margin: 1px;
     padding: 0.1rem 0.2rem;
     float: right;
-    font-size: 0.3rem;
+    font-size: 0.4rem;
     color: white; }
     #navigation a.active {
       background-color: #155962; }
