@@ -64,8 +64,7 @@ section {
         margin-top: -3px; }
 
 #the-rest {
-  background-color: #29c3d1;
-  padding-bottom: 1rem; }
+  background-color: #29c3d1; }
 
 p {
   padding: 2mm 10mm;
@@ -188,6 +187,10 @@ command {
   #footer a {
     color: white;
     text-decoration: underline; }
+
+space.about {
+  height: 10mm;
+  display: block; }
 
 space.generate {
   height: 10mm;
