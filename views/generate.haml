@@ -45,7 +45,7 @@
     .label Step 3:
     %h3 Configuration
 
-  .instruct Run the following in a terminal (one line at a time because you have to confirm each step)
+  .instruct Run the following in a terminal (one block at a time because you have to confirm each step)
 
   .command task config taskd.server freecinc.com:53589
   %br
@@ -59,7 +59,7 @@
   .command= "task config taskd.ca ~/.task/#{ca_filename}"
   %br
 
-  .command= "task config taskd.credentials &#92<br>&nbsp;&nbsp;'#{user.organization}/#{user.name}/#{user.uid}'"
+  .command= "task config taskd.credentials &#92<br>'#{user.organization}/#{user.name}/#{user.uid}'"
 
 
 %section.second-color

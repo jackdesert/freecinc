@@ -174,13 +174,14 @@ h3 {
 
 .command {
   margin-left: 21%;
+  text-indent: -3%;
   font-family: monospace;
   font-weight: 100;
   text-transform: none;
   margin: 0 2mm 2mm 21%;
   background-color: #c2c2c2;
   color: #252525;
-  padding: 0mm 4mm;
+  padding: 0mm 4mm 0mm 5%;
   display: inline-block;
   font-size: 61%; }
 

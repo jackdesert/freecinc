@@ -21,6 +21,7 @@ $button-border-radius: 7px
 $indent-0: 18%
 $indent-1: $indent-0 + 3%
 $indent-2: $indent-1 + 3%
+$second-line-indent: 3%
 
 
 
@@ -215,13 +216,14 @@ h3
 
 .command
     margin-left: $indent-1
+    text-indent: -1 * $second-line-indent
     font-family: monospace
     font-weight: 100
     text-transform: none
     margin: 0 2mm 2mm $indent-1
     background-color: $grey-light
     color: $nearly-black
-    padding: 0mm 4mm
+    padding: 0mm 4mm 0mm ($second-line-indent + 2%)
     display: inline-block
     font-size: 61%
 
