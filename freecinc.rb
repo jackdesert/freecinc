@@ -16,10 +16,10 @@ set :bind, '0.0.0.0'
 # views and stylesheets
 set :root, settings.root
 
-
-env = ENV['RACK_ENV'] || 'development'
-
-
+unless [:development, :production, :test].include? settings.environment
+  # :development is default if nothing specified for RACK_ENV on command line
+  raise ArgumentError, 'Unsupported environment'
+end
 
 require 'json'
 require './helpers/view_helper'
