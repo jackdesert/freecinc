@@ -8,7 +8,7 @@ class ::Logger
   alias_method :write, :<<
 end
 
-logger = Logger.new('log/freecinc.log')
+logger = Logger.new("log/#{settings.environment}.log")
 
 use Rack::CommonLogger, logger
 
