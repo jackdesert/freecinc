@@ -69,6 +69,9 @@ section {
 p {
   padding: 2mm 10mm;
   font-size: 75%; }
+  p.terms {
+    text-transform: none;
+    font-weight: 100; }
 
 a {
   text-decoration: none;
@@ -142,7 +145,8 @@ h2 {
     font-size: 1rem;
     text-align: left;
     padding-left: 10mm;
-    padding-top: 0.8rem; }
+    padding-top: 0.8rem;
+    text-transform: none; }
 
 h3 {
   margin-top: 10mm;
