@@ -40,9 +40,8 @@ include ViewHelper
  require './models/forge'
 
 
-
-
 get root_path do
+  ensure_correct_environment
   haml :index
 end
 
@@ -65,4 +64,13 @@ post '/download/:filename' do |filename|
   copy_forge.read_user_certificates.send(method_name)
 end
 
+
+private
+def ensure_correct_environment
+  # Make sure RACK_ENV has been set to production if you are serving freecinc.com proper,
+  # since that's the only way Sinatra knows to hide its stack traces
+  if production? && !settings.production?
+    raise ArgumentError, "Environment mismatch. If you are serving up freecinc.com proper, set RACK_ENV=production before starting server"
+  end
+end
 
