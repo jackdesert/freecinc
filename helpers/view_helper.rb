@@ -16,6 +16,10 @@ module ViewHelper
     '/about'
   end
 
+  def terms_path
+    '/terms'
+  end
+
   def author_email
     'JackDesert@gmail.com'
   end

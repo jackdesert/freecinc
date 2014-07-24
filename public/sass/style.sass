@@ -102,7 +102,9 @@ p
 
 a
     text-decoration: none
-
+    color: $medium-dark-building
+    &:hover
+        cursor:pointer
 
 
 .looks-like-button
@@ -173,6 +175,11 @@ h1
 h2
     font-size: 150%
     text-align: center
+    &.terms
+        font-size: 1rem
+        text-align: left
+        padding-left: 10mm
+        padding-top: 0.8rem
 
 
 h3
@@ -228,16 +235,27 @@ h3
 //    cursor: pointer
 
 #footer
-    text-align: center
     padding: 6mm 0 15mm
     background-color: $nearly-black
-    font-size: 0.5rem
-    font-weight: 100
-    a
-        color: white
-        text-decoration: underline
+    .row + .row
+        padding-top: 0.2rem
+    .row
+        font-weight: 100
+        font-size: 0.5rem
+        text-align: center
+        a
+            color: white
+            text-decoration: underline
+    .row.terms
+        font-size: 0.4rem
+        a
+            text-decoration: none
 
 
+
+.space.terms
+    height: 10mm
+    display: block
 
 .space.about
     height: 10mm

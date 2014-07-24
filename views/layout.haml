@@ -25,7 +25,10 @@
         =yield
 
       #footer
-        created by
-        %a{href: "mailto:#{author_email}?subject=FreeCinc"}
-          Jack Desert
+        .row.created-by
+          created by
+          %a{href: "mailto:#{author_email}?subject=FreeCinc"}
+            Jack Desert
+        .row.terms
+          %a{href: terms_path} Terms & Conditions
 

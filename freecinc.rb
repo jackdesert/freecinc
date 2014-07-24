@@ -54,6 +54,10 @@ get about_path do
   haml :about
 end
 
+get terms_path do
+  haml :terms
+end
+
 post '/download/:filename' do |filename|
   content_type 'application/octet-stream'
 

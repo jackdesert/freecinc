@@ -71,7 +71,8 @@ p {
   font-size: 75%; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #1b747f; }
 
 .looks-like-button {
   font-size: 0.7rem;
@@ -137,6 +138,11 @@ h1 {
 h2 {
   font-size: 150%;
   text-align: center; }
+  h2.terms {
+    font-size: 1rem;
+    text-align: left;
+    padding-left: 10mm;
+    padding-top: 0.8rem; }
 
 h3 {
   margin-top: 10mm;
@@ -179,14 +185,25 @@ h3 {
   font-size: 61%; }
 
 #footer {
-  text-align: center;
   padding: 6mm 0 15mm;
-  background-color: #252525;
-  font-size: 0.5rem;
-  font-weight: 100; }
-  #footer a {
-    color: white;
-    text-decoration: underline; }
+  background-color: #252525; }
+  #footer .row + .row {
+    padding-top: 0.2rem; }
+  #footer .row {
+    font-weight: 100;
+    font-size: 0.5rem;
+    text-align: center; }
+    #footer .row a {
+      color: white;
+      text-decoration: underline; }
+  #footer .row.terms {
+    font-size: 0.4rem; }
+    #footer .row.terms a {
+      text-decoration: none; }
+
+.space.terms {
+  height: 10mm;
+  display: block; }
 
 .space.about {
   height: 10mm;

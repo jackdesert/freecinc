@@ -29,3 +29,5 @@ Security. We have a team dedicated to keeping your information secure and testin
 Retention. We'll retain information you store on our Services for as long as we need it to provide you the Services. If you delete your account, we'll also delete this information. But please note: (1) there might be some latency in deleting this information from our servers and back-up storage; and (2) we may retain this information if necessary to comply with our legal obligations, resolve disputes, or enforce our agreements.
 
  Have questions or concerns about Dropbox, our Services and privacy? Contact us at privacy@dropbox.com.
+
+ 18:24 < Unode> jackdesert, also I would suggest to hide your debug stracktraces: https://freecinc.com/download/freecinc_51d55063.key.pem gives me Errno::EIO and lots of information users shouldn't see
