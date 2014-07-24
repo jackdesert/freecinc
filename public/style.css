@@ -142,23 +142,23 @@ h3 {
   margin-top: 10mm;
   font-size: 120%; }
 
-instruct {
+.instruct {
   margin-top: 8mm;
   margin-bottom: 6mm;
   margin-left: 21%;
   font-size: 0.7rem;
   display: block; }
-  instruct span.normal-case {
+  .instruct span.normal-case {
     font-size: 0.8rem;
     text-transform: none;
     font-family: monospace; }
-  instruct span.diagnostics {
+  .instruct span.diagnostics {
     font-size: 0.9rem;
     text-transform: none;
     font-family: monospace;
     font-weight: 100;
     font-style: italic; }
-  instruct span.menus {
+  .instruct span.menus {
     font-size: 0.7rem;
     font-style: italic;
     text-transform: none; }
@@ -166,7 +166,7 @@ instruct {
 .clear {
   clear: both; }
 
-command {
+.command {
   margin-left: 21%;
   font-family: monospace;
   font-weight: 100;
@@ -188,57 +188,57 @@ command {
     color: white;
     text-decoration: underline; }
 
-space.about {
+.space.about {
   height: 10mm;
   display: block; }
 
-space.generate {
+.space.generate {
   height: 10mm;
   display: block; }
 
-man {
+.man {
   position: absolute;
   top: 0.4rem;
   left: 1mm;
   z-index: 1; }
-  man img {
+  .man img {
     height: 7.5rem; }
-  man.generate {
+  .man.generate {
     left: 34mm;
     top: 3mm; }
-  man.tada img {
+  .man.tada img {
     height: 10rem;
     position: relative;
     left: -2rem;
     top: -0.9rem; }
 
-question, answer {
+.question, .answer {
   display: block;
   text-transform: none;
   padding: 0 1rem; }
-  question li, answer li {
+  .question li, .answer li {
     margin-left: 1rem; }
-  question li + li, answer li + li {
+  .question li + li, .answer li + li {
     padding-top: 0.3rem; }
 
-question {
+.question {
   font-size: 1rem; }
 
-answer, answer li {
+.answer, .answer li {
   font-weight: 100;
   font-size: 0.6rem; }
-  answer a, answer li a {
+  .answer a, .answer li a {
     color: #1b747f; }
-    answer a:hover, answer li a:hover {
+    .answer a:hover, .answer li a:hover {
       text-decoration: underline; }
-  answer span.monospace, answer li span.monospace {
+  .answer span.monospace, .answer li span.monospace {
     font-size: 0.6rem;
     font-family: monospace; }
 
-answer + answer {
+.answer + .answer {
   padding-top: 0.5rem; }
 
-answer + question {
+.answer + .question {
   padding-top: 1rem; }
 
 #navigation {

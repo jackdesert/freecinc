@@ -11,7 +11,7 @@
 
 %p.center
   Your keys have been generated...let's get started!
-%space.generate
+.space.generate
 
 %section.first-color
   =haml :_man, locals: {type: :point}
@@ -19,9 +19,9 @@
   .step
     .label Step 1:
     %h3 Prereqs
-  %instruct Make sure TaskWarrior 2.3.0 or greater is installed
+  .instruct Make sure TaskWarrior 2.3.0 or greater is installed
 
-  %command  task --version
+  .command task --version
 
 
 %section.first-color
@@ -31,7 +31,7 @@
     .label Step 2:
     %h3 Save Keys
 
-  %instruct Save the following files to your <span class='normal-case'>~/.task</span> directory
+  .instruct Save the following files to your <span class='normal-case'>~/.task</span> directory
 
   = haml :file_download, locals: { password: user.password, filename: key_filename }
   = haml :file_download, locals: { password: user.password, filename: cert_filename }
@@ -45,21 +45,21 @@
     .label Step 3:
     %h3 Configuration
 
-  %instruct Run the following in a terminal (one line at a time because you have to confirm each step)
+  .instruct Run the following in a terminal (one line at a time because you have to confirm each step)
 
-  %command  task config taskd.server freecinc.com:53589
+  .command task config taskd.server freecinc.com:53589
   %br
 
-  %command= "task config taskd.key ~/.task/#{key_filename}"
+  .command= "task config taskd.key ~/.task/#{key_filename}"
   %br
 
-  %command= "task config taskd.certificate ~/.task/#{cert_filename}"
+  .command= "task config taskd.certificate ~/.task/#{cert_filename}"
   %br
 
-  %command= "task config taskd.ca ~/.task/#{ca_filename}"
+  .command= "task config taskd.ca ~/.task/#{ca_filename}"
   %br
 
-  %command= "task config taskd.credentials &#92<br>&nbsp;&nbsp;'#{user.organization}/#{user.name}/#{user.uid}'"
+  .command= "task config taskd.credentials &#92<br>&nbsp;&nbsp;'#{user.organization}/#{user.name}/#{user.uid}'"
 
 
 %section.second-color
@@ -68,11 +68,11 @@
   .step
     .label Step 4:
     %h3 Verify
-  %instruct Run the diagnostic tool
+  .instruct Run the diagnostic tool
 
-  %command task diagnostics
+  .command task diagnostics
 
-  %instruct and make sure that in the output <span class='diagnostics'>CA</span>, <span class='diagnostics'>Cert</span>, and <span class='diagnostics'>Key</span> are all readable. Also ensure that you have a value for <span class='diagnostics'>Server</span>
+  .instruct and make sure that in the output <span class='diagnostics'>CA</span>, <span class='diagnostics'>Cert</span>, and <span class='diagnostics'>Key</span> are all readable. Also ensure that you have a value for <span class='diagnostics'>Server</span>
 
 
 %section.second-color
@@ -82,8 +82,8 @@
     .label Step 5:
     %h3 Sync
 
-  %instruct The moment you've been waiting for!
-  %command task sync init
+  .instruct The moment you've been waiting for!
+  .command task sync init
 
 
 %section.first-color
@@ -93,5 +93,5 @@
     .label Step 6:
     %h3 Save This
 
-  %instruct (optional) If you want to set up another computer to sync with the same account, click <span class='menus'>"File > Save As"</span> from your browser and save this page. Open the resulting html file on your other computer, and complete steps 1-5.
+  .instruct (optional) If you want to set up another computer to sync with the same account, click <span class='menus'>"File > Save As"</span> from your browser and save this page. Open the resulting html file on your other computer, and complete steps 1-5.
 
