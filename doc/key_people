@@ -1,0 +1,6 @@
+Unode is the one who said he could add a section to the taskwarrior website about community servers like FreeCinc
+pbeckingham
+bqf told me where to find the editable docs...
+
+18:38 < bqf> jackdesert: https://git.tasktools.org/projects
+18:52 < bqf> jackdesert: just realized that only answers half your question. no, not publicly contributable. you create a patch and send it to Paul (pbeckingham). bad experiences lead to this workflow, but it works ;)
