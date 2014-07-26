@@ -2,17 +2,19 @@
 
   user = locals[:user]
   raise ArgumentError, 'User required' unless user.is_a?(User)
-  key_filename =  "#{user.name}.key.pem"
-  cert_filename = "#{user.name}.cert.pem"
-  ca_filename =   "#{user.name}.ca.pem"
+  key_filename  =           "#{user.name}.key.pem"
+  cert_filename =           "#{user.name}.cert.pem"
+  ca_filename   =           "#{user.name}.ca.pem"
+  mirakel_config_filename = "#{user.name}.mirakel_config.txt"
 
   content_for(:title) { "#{user.name}_instructions" }
+  mirakel_download_link = haml :_mirakel_config_download, locals: { password: user.password, filename: mirakel_config_filename, uuid_for_mirakel: user.uuid }
 
 
 %p.center
   Your keys have been generated...let's get started!
-  .mirakel
-    (Mirakel users, just use_this)
+  .mirakel= "(Mirakel users, you just need #{mirakel_download_link})"
+
 .space.generate
 
 %section.first-color
@@ -35,9 +37,9 @@
 
   .instruct Save the following files to your <span class='normal-case'>~/.task</span> directory
 
-  = haml :file_download, locals: { password: user.password, filename: key_filename }
-  = haml :file_download, locals: { password: user.password, filename: cert_filename }
-  = haml :file_download, locals: { password: user.password, filename: ca_filename }
+  = haml :_file_download, locals: { password: user.password, filename: key_filename }
+  = haml :_file_download, locals: { password: user.password, filename: cert_filename }
+  = haml :_file_download, locals: { password: user.password, filename: ca_filename }
 
 
 %section.second-color

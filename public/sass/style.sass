@@ -22,6 +22,7 @@ $indent-0: 18%
 $indent-1: $indent-0 + 3%
 $indent-2: $indent-1 + 3%
 $second-line-indent: 3%
+$mirakel-font-size: 0.5rem
 
 
 
@@ -110,6 +111,29 @@ a
     &:hover
         cursor:pointer
 
+
+.mirakel
+    font-size: $mirakel-font-size
+    text-align: center
+    font-weight: 100
+    margin-bottom: -0.6rem
+    margin-top: -0.2rem
+form.mirakel-config-download-form
+    display: inline
+    margin: 0 -0.5rem 0 -0.2rem
+
+input.mirakel-config-download
+    font-weight: 700
+    vertical-align: baseline
+    display: inline
+    font-size: $mirakel-font-size
+    text-transform: uppercase
+    border: none
+    background: none
+    cursor: pointer
+    color: $medium-dark-building
+    &:hover
+        text-decoration: underline
 
 .looks-like-button
     font-size: 0.7rem

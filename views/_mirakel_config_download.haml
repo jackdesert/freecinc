@@ -1,0 +1,17 @@
+:ruby
+  password = locals[:password]
+  raise ArgumentError, 'password required' unless password
+
+  filename = locals[:filename]
+  raise ArgumentError, 'filename required' unless filename
+
+  uuid_for_mirakel = locals[:uuid_for_mirakel]
+  raise ArgumentError, 'uuid_for_mirakel required' unless uuid_for_mirakel
+
+
+
+%form{class: 'mirakel-config-download-form', name: :key, id: filename, action: secure_url("/download/#{filename}"), method: :post}
+  %input{type: :hidden, name: 'token', value: password}
+  %input{type: :hidden, name: 'uuid_for_mirakel', value: uuid_for_mirakel}
+  %input{type: :submit, value: 'this config file', class: 'mirakel-config-download'}
+

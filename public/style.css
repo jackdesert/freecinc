@@ -77,6 +77,30 @@ a {
   text-decoration: none;
   color: #1b747f; }
 
+.mirakel {
+  font-size: 0.5rem;
+  text-align: center;
+  font-weight: 100;
+  margin-bottom: -0.6rem;
+  margin-top: -0.2rem; }
+
+form.mirakel-config-download-form {
+  display: inline;
+  margin: 0 -0.5rem 0 -0.2rem; }
+
+input.mirakel-config-download {
+  font-weight: 700;
+  vertical-align: baseline;
+  display: inline;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #1b747f; }
+  input.mirakel-config-download:hover {
+    text-decoration: underline; }
+
 .looks-like-button {
   font-size: 0.7rem;
   padding: 20px 0px 20px 30px;
