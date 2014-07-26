@@ -55,11 +55,11 @@ org: #{forge.send(:user_organization)}
 user key: #{uuid}
 server: #{Forge::SERVER}
 client.cert:
-#{cert}
+#{cert.strip}
 Client.key:
-#{key}
+#{key.strip}
 ca.cert:
-#{ca}
+#{ca.strip}
 EOF
       mirakel_config.should == expected_mirakel_config
     end

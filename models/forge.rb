@@ -77,11 +77,11 @@ org: #{user_organization}
 user key: #{uuid}
 server: #{SERVER}
 client.cert:
-#{user_certificate}
+#{user_certificate.strip}
 Client.key:
-#{user_key}
+#{user_key.strip}
 ca.cert:
-#{ca}
+#{ca.strip}
 EOF
   end
 
