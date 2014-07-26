@@ -31,7 +31,8 @@ describe '/download/:filename' do
 
   let(:user_name) { user.name }
   let(:user) { User.new }
-  subject { browser.post "/download/#{user_name}.key.pem", token: user.password }
+  let(:any_uuid) { SecureRandom.uuid }
+  subject { browser.post "/download/#{user_name}.key.pem", token: user.password, uuid_for_mirakel: any_uuid  }
 
   it 'returns 200' do
     subject.status.should == 200

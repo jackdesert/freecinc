@@ -11,13 +11,17 @@ class Forge
   SINATRA_ROOT = YAML.load_file(CONFIG_FILE)['sinatra_root']
   SALT = YAML.load_file(CONFIG_FILE)['salt']
 
+  DEFAULT_ORGANIZATION  = 'FreeCinc'
+  SERVER                = 'freecinc.com:53589'
+
   SET_DATA_DIR = "--data #{TASKDDATA}"
 
   STARTS_WITH_LETTER = /\A[a-zA-Z]/
   NUMBERS_LETTERS_AND_UNDERSCORE = /\A[_a-zA-Z0-9]+\z/
   UUID = /[0-9a-f\-]{36}/
 
-  attr_reader :user_name, :uid
+
+  attr_reader :user_name, :uuid
 
   def initialize(a,b)
     raise ArgumentError, 'Instantiate a subclass of this'
@@ -32,6 +36,10 @@ class Forge
 
   private
 
+  def user_organization
+    DEFAULT_ORGANIZATION
+  end
+
   def in_pki_dir(&block)
     cd_to_pki_dir
     yield
@@ -42,7 +50,8 @@ class Forge
     OpenStruct.new( key: user_key,
                     cert: user_certificate,
                     ca: ca,
-                    uid: uid)
+                    uuid: uuid,
+                    mirakel_config: mirakel_config)
   end
 
   def user_key
@@ -61,6 +70,21 @@ class Forge
     Dir.chdir(PKI_DIR)
   end
 
+  def mirakel_config
+    return <<EOF
+username: #{user_name}
+org: #{user_organization}
+user key: #{uuid}
+server: #{SERVER}
+client.cert:
+#{user_certificate}
+Client.key:
+#{user_key}
+ca.cert:
+#{ca}
+EOF
+  end
+
 
 end
 
@@ -69,11 +93,8 @@ end
 
 class OriginalForge < Forge
 
-  attr_reader :user_organization
-
-  def initialize(user_name, user_organization)
+  def initialize(user_name)
     @user_name = user_name
-    @user_organization = user_organization
     validate
   end
 
@@ -92,8 +113,7 @@ class OriginalForge < Forge
   private
 
   def validate
-    hash = { user_name: user_name,
-      user_organization: user_organization }
+    hash = { user_name: user_name }
 
     hash.each do |method, value|
       unless value.match(STARTS_WITH_LETTER) && value.match(NUMBERS_LETTERS_AND_UNDERSCORE)
@@ -132,9 +152,9 @@ class OriginalForge < Forge
   def register_user
     ensure_user_organization_exists
     bash_response = bash("taskd add user '#{user_organization}' '#{user_name}' #{SET_DATA_DIR}")
-    uid_match = bash_response.match(UUID)
-    @uid = uid_match.values_at(0).first
-    raise ArgumentError, 'uuid must by 36 characters' unless uid.length == 36
+    uuid_match = bash_response.match(UUID)
+    @uuid = uuid_match.values_at(0).first
+    raise ArgumentError, 'uuid must have length 36' unless uuid.length == 36
   end
 
   def ensure_user_organization_exists
@@ -150,9 +170,10 @@ class CopyForge < Forge
 
   attr_reader :password
 
-  def initialize(user_name, password)
+  def initialize(user_name, password, uuid_for_mirakel)
     @user_name = user_name
     @password = password
+    @uuid = uuid_for_mirakel
     validate
   end
 
@@ -172,6 +193,8 @@ class CopyForge < Forge
       raise ArgumentError, "#{key} must be a string" unless value.is_a?(String)
       raise ArgumentError, "#{key} must have non-zero length" unless value.length > 0
     end
+
+    raise ArgumentError, 'uuid must have length 36' unless uuid.length == 36
   end
 
   def authenticated?

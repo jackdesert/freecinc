@@ -2,8 +2,6 @@ class User
 
   extend Forwardable
 
-  DEFAULT_ORGANIZATION = 'FreeCinc'
-
   attr_reader :name, :password
 
   def initialize
@@ -12,13 +10,13 @@ class User
   end
 
   def organization
-    DEFAULT_ORGANIZATION
+    Forge::DEFAULT_ORGANIZATION
   end
 
   private
 
   def become_certified
-    forge = OriginalForge.new(name, organization)
+    forge = OriginalForge.new(name)
     @certificates = forge.generate_certificates
     @password = forge.generate_password_from_user_name
   end
@@ -26,7 +24,8 @@ class User
   def_delegator :@certificates, :key,  :key
   def_delegator :@certificates, :cert, :cert
   def_delegator :@certificates, :ca,   :ca
-  def_delegator :@certificates, :uid,  :uid
+  def_delegator :@certificates, :uuid,  :uuid
+  def_delegator :@certificates, :mirakel_config,  :mirakel_config
 
   def generate_unique_name
     hex = SecureRandom.hex(4)

@@ -40,20 +40,24 @@ include ViewHelper
  require './models/forge'
 
 
+# /
 get root_path do
   ensure_correct_environment
   haml :index
 end
 
+# /generated_keys
 get generate_path do
   locals = {user: User.new}
   haml :generate, locals: locals
 end
 
+# /about
 get about_path do
   haml :about
 end
 
+# /terms
 get terms_path do
   haml :terms
 end
@@ -64,7 +68,7 @@ post '/download/:filename' do |filename|
   user_name, method_name, pem = *filename.split('.')
 
   raise ArgumentError, "Unknown file '#{filename}'" unless ['key', 'cert', 'ca'].include? method_name
-  copy_forge = CopyForge.new(user_name, params[:token])
+  copy_forge = CopyForge.new(user_name, params[:token], params[:uuid_for_mirakel])
   copy_forge.read_user_certificates.send(method_name)
 end
 
