@@ -1,8 +1,26 @@
 module ViewHelper
-  SERVER_NAME        =  'http://freecinc.com'
-  SECURE_SERVER_NAME = 'https://freecinc.com'
-  LOCAL_IMAGE_PATH = 'images/'
-  REMOTE_IMAGE_PATH = "#{SECURE_SERVER_NAME}/#{LOCAL_IMAGE_PATH}"
+  IMAGE_PATH = 'images/'
+
+  def http_host
+    env['HTTP_HOST']
+  end
+
+  def root_url
+    "http://#{http_host}"
+  end
+
+  def root_url_secure
+    return root_url unless production?
+    root_url.sub(/\Ahttp/, 'https')
+  end
+
+  def production?
+    settings.production?
+  end
+
+  def image_url
+    "#{root_url_secure}/#{IMAGE_PATH}"
+  end
 
   def root_path
     '/'
@@ -48,14 +66,15 @@ module ViewHelper
     # Production urls should use https
     # localhost urls should keep http
     absolute_url = url(relative_url)
-    absolute_url.sub(SERVER_NAME, SECURE_SERVER_NAME)
+    return absolute_url unless production?
+    absolute_url.sub(/^http/, 'https')
   end
 
 
   def image_path(text)
     if production?
       # Load images from the remote url
-      text.gsub(LOCAL_IMAGE_PATH, REMOTE_IMAGE_PATH)
+      text.gsub(IMAGE_PATH, image_url)
     else
       # Load images locally (faster for development)
       text
@@ -76,8 +95,8 @@ module ViewHelper
     env['PATH_INFO']
   end
 
-  def production?
-    url('some_file').include?('freecinc.com')
+  def freecinc_proper?
+    http_host == 'freecinc.com'
   end
 
   def stylesheets_production

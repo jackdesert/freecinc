@@ -16,7 +16,7 @@ set :bind, '0.0.0.0'
 # views and stylesheets
 set :root, settings.root
 
-unless [:development, :production, :test].include? settings.environment
+unless [:production, :development, :test].include? settings.environment
   # :development is default if nothing specified for RACK_ENV on command line
   raise ArgumentError, 'Unsupported environment'
 end
@@ -78,7 +78,7 @@ private
 def ensure_correct_environment
   # Make sure RACK_ENV has been set to production if you are serving freecinc.com proper,
   # since that's the only way Sinatra knows to hide its stack traces
-  if production? && !settings.production?
+  if freecinc_proper? && !settings.production?
     raise ArgumentError, "Environment mismatch. If you are serving up freecinc.com proper, set RACK_ENV=production before starting server"
   end
 end
