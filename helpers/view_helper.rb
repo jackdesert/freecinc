@@ -40,6 +40,9 @@ module ViewHelper
     end
   end
 
+  def fake_uuid
+    '---------This-is-a-fake-uuid--------'
+  end
 
   def secure_url(relative_url)
     # Production urls should use https

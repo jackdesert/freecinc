@@ -13,6 +13,7 @@ require 'rr'
 
 require_relative '../models/forge'
 require_relative '../models/user'
+require_relative '../helpers/view_helper'
 
 RSpec.configure do |config|
   config.mock_with :rr
