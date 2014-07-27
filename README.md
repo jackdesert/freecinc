@@ -4,11 +4,21 @@ FreeCinc
 Starting the web server
 -----------------------
 
-    # Production Mode
-    cd /path/to/freecinc && RACK_ENV=production bundle exec rackup config-freecinc.ru -p 9952
+### Production Mode
+It is recommended that you start freecinc using the wrapper script. That way, if it dies, it is immediately replaced with another
 
-    # Development Mode
-    bundle exec rerun freecinc.rb
+    nohup script/run_freecinc_indefinitely.sh &
+
+
+### Development Mode
+
+Basic:
+
+    bundle exec freecinc.rb
+
+With auto-reloading:
+
+    bundle exec rerun freecinc.rb --background
 
 
 Starting Guard-LiveReload
@@ -26,7 +36,12 @@ Starting Sass
 Starting taskd on the Server
 ----------------------------
 
-The version that works with cron:
+It is recommended that you start taskd using the wrapper script. That way, if it dies, it is immediately replaced with another
 
-    * * * * * /usr/local/bin/taskd server --data /home/dev/taskddata --daemon
+    nohup script/run_taskd_indefinitely.sh &
 
+
+Running tests
+-------------
+
+    bundle exec rspec
