@@ -12,7 +12,6 @@ class Forge
   SALT = YAML.load_file(CONFIG_FILE)['salt']
 
   DEFAULT_ORGANIZATION  = 'FreeCinc'
-  SERVER                = 'freecinc.com:53589'
 
   SET_DATA_DIR = "--data #{TASKDDATA}"
 
@@ -21,7 +20,7 @@ class Forge
   UUID = /[0-9a-f\-]{36}/
 
 
-  attr_reader :user_name, :uuid
+  attr_reader :user_name, :uuid, :server_with_port
 
   def initialize(a,b)
     raise ArgumentError, 'Instantiate a subclass of this'
@@ -75,7 +74,7 @@ class Forge
 username: #{user_name}
 org: #{user_organization}
 user key: #{uuid}
-server: #{SERVER}
+server: #{server_with_port}
 client.cert:
 #{user_certificate.strip}
 Client.key:
@@ -92,6 +91,9 @@ end
 
 
 class OriginalForge < Forge
+
+  # the :server_with_port attr_writer is only here so we can inject a value for testing
+  attr_writer :server_with_port
 
   def initialize(user_name)
     @user_name = user_name
@@ -170,10 +172,11 @@ class CopyForge < Forge
 
   attr_reader :password
 
-  def initialize(user_name, password, uuid_for_mirakel)
+  def initialize(user_name, password, uuid_for_mirakel, server_with_port)
     @user_name = user_name
     @password = password
     @uuid = uuid_for_mirakel
+    @server_with_port = server_with_port
     validate
   end
 

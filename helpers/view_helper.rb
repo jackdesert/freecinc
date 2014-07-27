@@ -14,6 +14,10 @@ module ViewHelper
     root_url.sub(/\Ahttp/, 'https')
   end
 
+  def server_with_port
+    "#{env['SERVER_NAME']}:53589"
+  end
+
   def production?
     settings.production?
   end

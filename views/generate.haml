@@ -2,6 +2,7 @@
 
   user = locals[:user]
   raise ArgumentError, 'User required' unless user.is_a?(User)
+  raise ArgumentError, 'Server must include port' unless server_with_port.match(/\d+/)
   key_filename  =           "#{user.name}.key.pem"
   cert_filename =           "#{user.name}.cert.pem"
   ca_filename   =           "#{user.name}.ca.pem"
@@ -51,7 +52,7 @@
 
   .instruct Run the following in a terminal (one block at a time because you have to confirm each step)
 
-  .command= "task config taskd.server #{Forge::SERVER}"
+  .command= "task config taskd.server #{server_with_port}"
   %br
 
   .command= "task config taskd.key ~/.task/#{key_filename}"

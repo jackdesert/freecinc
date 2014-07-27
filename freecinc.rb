@@ -69,7 +69,7 @@ post '/download/:filename' do |filename|
 
   raise ArgumentError, "Unknown file '#{filename}'" unless ['key', 'cert', 'ca', 'mirakel_config'].include? method_name
   uuid_for_mirakel = params[:uuid_for_mirakel] || fake_uuid
-  copy_forge = CopyForge.new(user_name, params[:token], uuid_for_mirakel)
+  copy_forge = CopyForge.new(user_name, params[:token], uuid_for_mirakel, server_with_port)
   copy_forge.read_user_certificates.send(method_name)
 end
 

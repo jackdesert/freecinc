@@ -19,6 +19,20 @@ describe '/' do
   end
 end
 
+describe '/about' do
+  subject { browser.get '/about' }
+  it 'returns 200' do
+    subject.status.should == 200
+  end
+end
+
+describe '/terms' do
+  subject { browser.get '/terms' }
+  it 'returns 200' do
+    subject.status.should == 200
+  end
+end
+
 describe '/generated_keys' do
   subject { browser.get '/generated_keys' }
   it 'returns 200' do
