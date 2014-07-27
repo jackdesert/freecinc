@@ -45,3 +45,16 @@ Running tests
 -------------
 
     bundle exec rspec
+
+
+Check if taskd is running on a remote machine
+---------------------------------------------
+
+This will return either 0 or 1:
+
+    nc -z -w5 freecinc.com 53589
+
+And this will print that to the display:
+
+    nc -z -w5 freecinc.com 53589; echo $?
+

@@ -20,5 +20,6 @@ fi
 
 while true; do
   /usr/local/bin/taskd server
+  sleep 10
 done
 
