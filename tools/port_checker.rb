@@ -36,6 +36,13 @@ class PortChecker
     output.strip
   end
 
+  def email_body_with_subject
+    output = <<EOF
+Subject: #{email_subject}
+#{email_body}
+EOF
+  end
+
   def email_body
     "taskd is down on port #{PORT} at at #{Time.now}"
   end
@@ -45,9 +52,9 @@ class PortChecker
   end
 
   def notify
-    puts "Emailing new entry: #{@title}"
+    puts email_body_with_subject
     RECIPIENTS.each do |recipient|
-      mail_command = "echo '#{email_body}' | msmtp #{recipient}"
+      mail_command = "echo -e \"#{email_body_with_subject}\" | msmtp #{recipient}"
       `#{mail_command}`
     end
   end
@@ -55,7 +62,7 @@ end
 
 prod  = PortChecker.new('freecinc.com')
 stage = PortChecker.new('freecinc-staging.com')
-binding.pry
+prod.send :notify
 [prod, stage].each do |server|
   server.notify_unless_up?
 end
