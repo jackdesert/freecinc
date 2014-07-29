@@ -5,7 +5,7 @@
 
 require 'pry'
 
-class TaskdChecker
+class PortChecker
   PORT = 53589
   TIMEOUT = 5
   RECIPIENTS = ['jworky@gmail.com']
@@ -53,8 +53,9 @@ class TaskdChecker
   end
 end
 
-prod  = TaskdChecker.new('freecinc.com')
-stage = TaskdChecker.new('freecinc-staging.com')
+prod  = PortChecker.new('freecinc.com')
+stage = PortChecker.new('freecinc-staging.com')
+binding.pry
 [prod, stage].each do |server|
   server.notify_unless_up?
 end
