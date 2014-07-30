@@ -50,11 +50,10 @@ Running tests
 Check if taskd is running on a remote machine
 ---------------------------------------------
 
-This will return either 0 or 1:
+The script in tools/port_checker.rb is intended to be a remote monitoring service for taskd.
+Put this in your crontab on a separate server
+(preferably one that is run by a different company)
 
-    nc -z -w5 freecinc.com 53589
-
-And this will print that to the display:
-
-    nc -z -w5 freecinc.com 53589; echo $?
-
+    # Check if taskd is running every minute and send email
+    TOOLS=/home/dev/freecinc/tools
+    * * * * * cd $TOOLS && bash -lc '/home/dev/.rbenv/shims/ruby port_checker.rb' 2>> $TOOLS/log/cronlog >> $TOOLS/log/cronlog
