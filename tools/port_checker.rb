@@ -45,7 +45,8 @@ class PortChecker
   end
 
   def email_body_with_subject
-    "Subject: #{email_subject}\n#{email_body}"
+    # Two line feeds are requierd in order for body to be picked up through cat
+    "Subject: #{email_subject}\n\n#{email_body}"
   end
 
   def email_body
