@@ -14,6 +14,7 @@ while true; do
   cd /home/dev/freecinc
   RACK_ENV=production bundle exec rackup config-freecinc.ru -p 9952
   sleep 10
+  echo "freecinc restarted `date`" >> log/freecinc_restart.log
 done
 
 
