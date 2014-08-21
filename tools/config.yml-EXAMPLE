@@ -1,0 +1,5 @@
+user_name: 'your-email@domain.com'
+password: your-password
+smtp_address: 'some.smtp.server.com'
+recipients: ['mymomma@mail.net', 'mypoppa@mail.net']
+

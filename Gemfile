@@ -12,5 +12,6 @@ gem 'haml', require: false
 gem 'rerun'
 gem 'sass', require: false
 gem 'thin'
+gem 'mail', require: false
 
 gem'rb-readline'

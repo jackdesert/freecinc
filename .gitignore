@@ -20,4 +20,4 @@ config/location.yml
 log/
 
 tools/log/
-tools/.tempmail
+tools/config.yml
