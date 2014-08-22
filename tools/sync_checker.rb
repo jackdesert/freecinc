@@ -1,9 +1,11 @@
 require 'pry'
 require 'open3'
+require 'securerandom'
 require './ez_mail'
 
 class SyncChecker
   RECIPIENTS = ['jworky@gmail.com']
+  EXECUTABLE = '/usr/local/bin/task'
   SUCCESS_STRING = 'Sync successful'
   INDENT = '    '
 
@@ -44,8 +46,9 @@ class SyncChecker
 
   def command
     set_taskrc = "TASKRC=#{taskrc}"
-    "#{set_taskrc} task add 'walk the #{SecureRandom.hex}' && #{set_taskrc} task sync"
-    #"#{set_taskrc} task add 'walk the #{SecureRandom.hex}'"
+    output = "#{set_taskrc} #{EXECUTABLE} add 'walk the #{SecureRandom.hex}' && #{set_taskrc} #{EXECUTABLE} sync"
+    puts output
+    output
   end
 
   def sync
@@ -70,11 +73,11 @@ class SyncChecker
   end
 
   def email_body
-    "taskd failed to sync at #{Time.now}"
+    "taskd failed to sync at #{Time.now} on #{server}.com"
   end
 
   def email_subject
-    "TASKD Failed to Sync on #{server}"
+    "Sync Failure #{server}.com"
   end
 
 

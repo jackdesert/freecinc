@@ -57,3 +57,11 @@ Put this in your crontab on a separate server
     # Check if taskd is running every minute and send email
     TOOLS=/home/dev/freecinc/tools
     * * * * * cd $TOOLS && bash -lc '/home/dev/.rbenv/shims/ruby port_checker.rb' 2>> $TOOLS/log/cronlog >> $TOOLS/log/cronlog
+
+Check if you can sync with a remote machine
+-------------------------------------------
+
+Before running this script, you must set up TaskWarrior on the machine that will run this script. 
+Then put this in your crontab:
+
+    * * * * *  TOOLS=/home/ubuntu/freecinc/tools && ERROR_LOG=$TOOLS/log/cron.log && cd $TOOLS && /bin/bash -lc '/home/ubuntu/.rbenv/shims/ruby sync_checker.rb' >> $ERROR_LOG 2>> $ERROR_LOG
