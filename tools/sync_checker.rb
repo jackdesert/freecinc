@@ -45,10 +45,9 @@ class SyncChecker
   end
 
   def command
+    return @command if @command
     set_taskrc = "TASKRC=#{taskrc}"
-    output = "#{set_taskrc} #{EXECUTABLE} add 'walk the #{SecureRandom.hex}' && #{set_taskrc} #{EXECUTABLE} sync"
-    puts output
-    output
+    @command = "#{set_taskrc} #{EXECUTABLE} add 'walk the #{SecureRandom.hex}' && #{set_taskrc} #{EXECUTABLE} sync"
   end
 
   def sync
@@ -57,6 +56,7 @@ class SyncChecker
       self.stderr = block_stderr.read
       self.exitstatus = wait_thr.value.exitstatus
     end
+    log command
     log command_output
   end
 
@@ -73,7 +73,12 @@ class SyncChecker
   end
 
   def email_body
-    "taskd failed to sync at #{Time.now} on #{server}.com"
+    output = "taskd failed to sync at #{Time.now} on #{server}.com\n\n"
+    output += "command:\n"
+    output += command
+    output += "\n\nresponse:\n"
+    output += command_output
+    output
   end
 
   def email_subject
