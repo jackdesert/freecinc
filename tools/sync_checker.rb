@@ -9,6 +9,7 @@ class SyncChecker
   EXECUTABLE = '/usr/local/bin/task'
   SUCCESS_STRING = 'Sync successful'
   INDENT = '    '
+  TIMEOUT = 5
 
 
   attr_reader :created_at, :server
@@ -32,6 +33,7 @@ class SyncChecker
   def up?
     add_task
     sync
+    log(stdout_and_stderr)
     log(time_stats)
     exitstatus == 0 && stdout_and_stderr.include?(SUCCESS_STRING)
   end
@@ -74,13 +76,12 @@ class SyncChecker
   end
 
   def run_command(command)
+    log command
     Open3.popen3( command ) do |block_stdin, block_stdout, block_stderr, wait_thr|
       self.stdout += block_stdout.read
       self.stderr += block_stderr.read
       self.exitstatus = wait_thr.value.exitstatus
     end
-    log command
-    log stdout_and_stderr
   end  
  
   def add_task
@@ -91,7 +92,13 @@ class SyncChecker
 
   def sync
     self.sync_time = Benchmark.measure do
-      run_command(sync_command)
+      begin
+        Timeout::timeout(TIMEOUT) do 
+          run_command(sync_command)
+        end
+      rescue Timeout::Error
+        self.stderr += "Sync timed out after #{TIMEOUT} seconds"
+      end
     end
   end
 
@@ -148,6 +155,7 @@ end
 # Notice equal lengh server names for nice log formatting
 prod  = SyncChecker.new('freecinc')
 stage = SyncChecker.new('freecinc-staging')
+
 
 [prod, stage].each do |server|
   server.notify_unless_up?
