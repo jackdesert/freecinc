@@ -13,7 +13,7 @@ class SyncChecker
 
 
   attr_reader :created_at, :server
-  attr_accessor :stdout, :stderr, :exitstatus, :add_task_time, :sync_time, :email_time
+  attr_accessor :stdout, :stderr, :exitstatus, :add_task_time, :sync_time, :email_time, :pid
 
   def initialize(server)
     @created_at = timestamp
@@ -78,6 +78,8 @@ class SyncChecker
   def run_command(command)
     log command
     Open3.popen3( command ) do |block_stdin, block_stdout, block_stderr, wait_thr|
+      # Note we write the pid first, so it can be killed from the other thread
+      self.pid = wait_thr.pid
       self.stdout += block_stdout.read
       self.stderr += block_stderr.read
       self.exitstatus = wait_thr.value.exitstatus
@@ -92,13 +94,24 @@ class SyncChecker
 
   def sync
     self.sync_time = Benchmark.measure do
-      begin
-        Timeout::timeout(TIMEOUT) do 
-          run_command(sync_command)
-        end
-      rescue Timeout::Error
-        self.stderr += "Sync timed out after #{TIMEOUT} seconds"
+      # Start process in thread so we can wait for it to finish
+      timeout = Thread.new do
+        # Kill process after TIMEOUT seconds if it hasn't finished
+        # Note we are not using the Timeout module, because it
+        # never times out when waiting for a system call
+        sleep TIMEOUT
+
+        # Add the error message before killing the process so we make sure it gets in there
+        # Note there could still be a race condition where the error message gets logged but the 
+        # sync actually finishes successfully onits own before the `kill` command gets executed
+        self.stderr += "Sync still running after #{TIMEOUT} seconds. About to kill."
+
+        `kill -9 #{pid}`
+
       end
+
+      run_command(sync_command)
+
     end
   end
 
@@ -158,6 +171,7 @@ stage = SyncChecker.new('freecinc-staging')
 
 
 [prod, stage].each do |server|
+  # Note these run sequentially, so if one takes longer the other is delayed
   server.notify_unless_up?
 end
 
