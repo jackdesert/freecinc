@@ -25,6 +25,9 @@ require 'json'
 require './helpers/view_helper'
 
 class FreeCinc < Sinatra::Base
+
+  RESTART_COMMAND = "pkill -f '/usr/local/bin/taskd server'"
+
   configure :production, :development do
     enable :logging
   end
@@ -71,6 +74,15 @@ post '/download/:filename' do |filename|
   uuid_for_mirakel = params[:uuid_for_mirakel] || fake_uuid
   copy_forge = CopyForge.new(user_name, params[:token], uuid_for_mirakel, server_with_port)
   copy_forge.read_user_certificates.send(method_name)
+end
+
+get '/restart/:secret' do |secret|
+  if secret == 'jeremy'
+    `#{FreeCinc::RESTART_COMMAND}`
+    return 'Process restarted. Will be online in 10 seconds'
+  else
+    return 'invalid secret'
+  end
 end
 
 
