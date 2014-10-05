@@ -1,61 +1,138 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
+	"github.com/sendgrid/sendgrid-go"
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
 	"time"
 )
 
 func main() {
+	prod := server{Name: "freecinc"}
+	staging := server{Name: "freecinc-staging"}
+
+	prod.check()
+	staging.check()
+}
+
+type server struct {
+	Name string
+}
+
+type result struct {
+	Success    bool
+	Timeliness bool
+	Output     string
+}
+
+func (s server) check() {
 
 	// For some reason this does not work unless channel is buffered
-	channel := make(chan bool, 1)
+	channel := make(chan result, 1)
 
 	// Start process
-	command := exec.Command("/usr/local/bin/task", "sync TASKRC=~/.taskrc-freecinc")
-	err := command.Start()
+	binary := "/usr/local/bin/task"
+	args := "sync"
 
-	if err != nil {
-		log.Println("Error: ", err.Error())
-		return
-	}
+	// Set TASKRC environment variable
+	taskrc := fmt.Sprintf("~/.taskrc-%s", s.Name)
+	os.Setenv("TASKRC", taskrc)
+
+	log.Println("binary: ", binary)
+	log.Println("args: ", args)
+	log.Println("TASKRC env var: ", os.Getenv("TASKRC"))
+
+	command := exec.Command(binary, args)
 
 	// in a separate goroutine, wait for completion
-	go writeToChannelWhenProcessDone(command, channel)
+	go runAndWriteToChannelWhenDone(command, channel)
 
 	// Allow 10 seconds for completion
-	time.Sleep(10000 * time.Millisecond)
+	time.Sleep(10 * time.Second)
 	log.Println("Done waiting")
 
-	done := <-channel
+	syncResult := <-channel
+	// Print stdout and stderr from task
+	log.Println("output: ", syncResult.Output)
 
-	if done {
-		log.Println("Sync completed within timeframe")
-	} else {
-		log.Println("Not finished yet. Killing now")
+	if syncResult.Timeliness == false {
+		log.Println("ERROR: Timeliness. Killing process.")
 		command.Process.Kill()
 
-		restartServer()
+		subject := fmt.Sprintf("Sync Failure on %s.com (Timeliness == false)", s.Name)
+		sendEmail(subject, "Your server has been restarted")
+		s.Restart()
+	} else if syncResult.Success == false {
+		subject := fmt.Sprintf("Sync Failure on %s.com (Success == false)", s.Name)
+		sendEmail(subject, "Your server has been restarted")
+		s.Restart()
+	} else {
+		log.Println("Sync completed with SUCCESS and TIMELINESS")
 	}
 }
 
-func writeToChannelWhenProcessDone(command *exec.Cmd, channel chan bool) {
-	// Write false to channel
-	channel <- false
+func runAndWriteToChannelWhenDone(command *exec.Cmd, channel chan result) {
+
+	// Write to channel with falses
+	channel <- result{Success: false, Timeliness: false}
+
+	var stdout, stderr bytes.Buffer
+	command.Stdout = &stdout
+	command.Stderr = &stderr
+
+	// Start command
+	startErr := command.Start()
+
+	if startErr != nil {
+		failLoudly("Error starting command: " + startErr.Error())
+	}
 
 	command.Wait()
+
+	success := command.ProcessState.Success()
 
 	// Remove original value from channel
 	<-channel
 
-	// Replace it with true
-	channel <- true
+	// Replace it with results
+	output := stderr.String() + stdout.String()
+	channel <- result{Success: success, Timeliness: true, Output: output}
 
-	log.Println("SUCCESS")
+	if success {
+		log.Println("SUCCESS")
+	} else {
+		log.Println("FAILURE")
+	}
 }
 
-func restartServer() {
-	log.Println("Restarting server on freecinc.com")
-	http.Get("https://freecinc.com/restart/jeremy")
+func (s server) Restart() {
+	msg := fmt.Sprintf("Restarting server on %s.com", s.Name)
+	log.Println(msg)
+	uri := fmt.Sprintf("https://%s.com/restart/jeremy", s.Name)
+	http.Get(uri)
+}
+
+func failLoudly(subject string) {
+	log.Println(subject)
+	sendEmail(subject, "twiddling thumbs")
+	panic(subject)
+}
+
+func sendEmail(subject string, body string) {
+	log.Println("Sending email with subject '" + subject + "' and body '" + body + "'")
+	sg := sendgrid.NewSendGridClient("golang", "golang")
+	message := sendgrid.NewMail()
+	message.AddTo("jworky@gmail.com")
+	message.SetSubject(subject)
+	message.SetText(body)
+	message.SetFrom("jack@sendgrid.com")
+	if r := sg.Send(message); r == nil {
+		log.Println("Email sent!")
+	} else {
+		log.Println("ERROR SENDING EMAIL: ", r)
+	}
 }
