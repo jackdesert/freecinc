@@ -38,7 +38,7 @@ Starting taskd on the Server
 
 It is recommended that you start taskd using the wrapper script. That way, if it dies, it is immediately replaced with another
 
-    nohup script/run_taskd_indefinitely.sh &
+    cd freecinc && nohup script/run_taskd_indefinitely.sh &
 
 
 Running tests
@@ -47,21 +47,28 @@ Running tests
     bundle exec rspec
 
 
-Check if taskd is running on a remote machine
----------------------------------------------
+Automate the remote machine sync check
+--------------------------------------
 
-The script in tools/port_checker.rb is intended to be a remote monitoring service for taskd.
-Put this in your crontab on a separate server
-(preferably one that is run by a different company)
+The script in tools/restart_unless_sync.go is a remote monitoring service for taskd.
+If you make changes to restart_unless_sync.go, build it:
 
-    # Check if taskd is running every minute and send email
-    TOOLS=/home/dev/freecinc/tools
-    * * * * * cd $TOOLS && bash -lc '/home/dev/.rbenv/shims/ruby port_checker.rb' 2>> $TOOLS/log/cronlog >> $TOOLS/log/cronlog
+    go build restart_unless_sync.go
 
-Check if you can sync with a remote machine
--------------------------------------------
+Then commit the changes (and the changes to the executable, which is named 'restart_unless_sync') and push them to a remote monitoring server.
+Put this in your crontab on the remote monitoring server
 
-Before running this script, you must set up TaskWarrior on the machine that will run this script. 
-Then put this in your crontab:
+    LOG=/home/ubuntu/freecinc/tools/log/go.log
+    * * * * * /home/ubuntu/freecinc/tools/restart_unless_sync >> $LOG 2>> $LOG
 
-    * * * * *  TOOLS=/home/ubuntu/freecinc/tools && ERROR_LOG=$TOOLS/log/cron.log && cd $TOOLS && /bin/bash -lc '/home/ubuntu/.rbenv/shims/ruby sync_checker.rb' >> $ERROR_LOG 2>> $ERROR_LOG
+In order for it to work, you must first set up taskwarrior
+
+
+Script that kills taskd if the memory usage is too high
+-------------------------------------------------------
+
+This script is to be run once a minute from your production server.
+
+    freecinc/tools/restart_if_memory.sh
+
+It is built as a bash script so that it can start up without inducing extra memory penalty (in case the memory is already running out)

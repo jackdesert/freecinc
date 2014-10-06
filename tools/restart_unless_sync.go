@@ -6,11 +6,18 @@ import (
 	"fmt"
 	"github.com/sendgrid/sendgrid-go"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"os/exec"
+	"strconv"
 	"time"
 )
+
+func init() {
+	// Make sure the seed is initialized differently each run
+	rand.Seed(time.Now().UTC().UnixNano())
+}
 
 func main() {
 	prod := server{Name: "freecinc"}
@@ -144,7 +151,11 @@ func sendEmail(subject string, body string) {
 	sg := sendgrid.NewSendGridClient("golang", "golang")
 	message := sendgrid.NewMail()
 	message.AddTo("jworky@gmail.com")
-	message.SetSubject(subject)
+
+	// Add a random number to the subject so they show up in different threads
+	randNumber := rand.Intn(100)
+	randNumberStr := strconv.Itoa(randNumber)
+	message.SetSubject(subject + randNumberStr)
 	message.SetText(body)
 	message.SetFrom("jack@sendgrid.com")
 	if r := sg.Send(message); r == nil {
