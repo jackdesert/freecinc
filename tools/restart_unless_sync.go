@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
 	"github.com/sendgrid/sendgrid-go"
 	"log"
@@ -113,7 +114,23 @@ func (s server) Restart() {
 	msg := fmt.Sprintf("Restarting server on %s.com", s.Name)
 	log.Println(msg)
 	uri := fmt.Sprintf("https://%s.com/restart/jeremy", s.Name)
+	insecureHttpGet(uri)
+}
+
+func insecureHttpGet(uri string) {
+	// get uri, but ignore ssl errors
+
+	transport := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: transport}
+
 	http.Get(uri)
+
+	_, err := client.Get(uri)
+	if err != nil {
+		failLoudly(err.Error())
+	}
 }
 
 func failLoudly(subject string) {
