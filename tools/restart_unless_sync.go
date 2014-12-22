@@ -23,8 +23,18 @@ func main() {
 	prod := server{Name: "freecinc"}
 	staging := server{Name: "freecinc-staging"}
 
-	prod.check()
-	staging.check()
+	prod.checkAndNotifyIfFailsTwice()
+	staging.checkAndNotifyIfFailsTwice()
+}
+
+func (s server) checkAndNotifyIfFailsTwice() {
+	pass := s.check(false)
+	if pass == false {
+		// Allow 8 seconds before second attempt---there's a 7-second wait before taskd restarts
+		log.Println("Waiting 8 seconds before second attempt.")
+		time.Sleep(8 * time.Second)
+		s.check(true)
+	}
 }
 
 type server struct {
@@ -37,7 +47,7 @@ type result struct {
 	Output     string
 }
 
-func (s server) check() {
+func (s server) check(notify bool) bool {
 
 	// For some reason this does not work unless channel is buffered
 	channel := make(chan result, 1)
@@ -59,8 +69,8 @@ func (s server) check() {
 	// in a separate goroutine, wait for completion
 	go runAndWriteToChannelWhenDone(command, channel)
 
-	// Allow 10 seconds for completion
-	time.Sleep(10 * time.Second)
+	// Allow 8 seconds for completion (there is a 7-second delay after restart before new process beings)
+	time.Sleep(7 * time.Second)
 	log.Println("Done waiting")
 
 	syncResult := <-channel
@@ -72,14 +82,21 @@ func (s server) check() {
 		command.Process.Kill()
 
 		subject := fmt.Sprintf("Sync Failure on %s.com (Timeliness == false)", s.Name)
-		sendEmail(subject, "Your server has been restarted")
+		if notify == true {
+			sendEmail(subject, "Your server has been restarted")
+		}
 		s.Restart()
+		return false
 	} else if syncResult.Success == false {
 		subject := fmt.Sprintf("Sync Failure on %s.com (Success == false)", s.Name)
-		sendEmail(subject, "Your server has been restarted")
+		if notify == true {
+			sendEmail(subject, "Your server has been restarted")
+		}
 		s.Restart()
+		return false
 	} else {
 		log.Println("Sync completed with SUCCESS and TIMELINESS")
+		return true
 	}
 }
 
