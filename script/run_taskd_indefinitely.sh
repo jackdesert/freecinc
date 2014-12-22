@@ -20,7 +20,7 @@ fi
 
 while true; do
   /usr/local/bin/taskd server
-  sleep 10
+  sleep 7
   echo "taskd restarted `date -u`" >> log/taskd_restart.log
 done
 
