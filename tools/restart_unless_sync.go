@@ -31,8 +31,8 @@ func (s server) checkAndNotifyIfFailsTwice() {
 	pass := s.check(false)
 	if pass == false {
 		// Allow 8 seconds before second attempt---there's a 7-second wait before taskd restarts
-		log.Println("Waiting 8 seconds before second attempt.")
-		time.Sleep(8 * time.Second)
+		log.Println("Waiting 20 seconds before second attempt.")
+		time.Sleep(20 * time.Second)
 		s.check(true)
 	}
 }
