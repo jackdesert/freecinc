@@ -1,0 +1,4 @@
+Add go monitor to the readme
+remove email addresses from go executable
+Add logic to check that the account you are about to create does not already exist
+
