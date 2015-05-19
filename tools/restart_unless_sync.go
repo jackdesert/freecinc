@@ -174,7 +174,7 @@ func sendEmail(subject string, body string) {
 	randNumberStr := strconv.Itoa(randNumber)
 	message.SetSubject(subject + randNumberStr)
 	message.SetText(body)
-	message.SetFrom("support@jackdesert.com")
+	message.SetFrom("support@pdxdailydancer.com")
 	if r := sg.Send(message); r == nil {
 		log.Println("Email sent!")
 	} else {
