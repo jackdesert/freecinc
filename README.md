@@ -59,7 +59,7 @@ Then commit the changes (and the changes to the executable, which is named 'rest
 Put this in your crontab on the remote monitoring server
 
     LOG=/home/ubuntu/freecinc/tools/log/go.log
-    * * * * * /home/ubuntu/freecinc/tools/restart_unless_sync >> $LOG 2>> $LOG
+    * * * * * /home/ubuntu/freecinc/tools/bin/restart_unless_sync >> $LOG 2>> $LOG
 
 In order for it to work, you must first set up taskwarrior
 
