@@ -165,7 +165,7 @@ func failLoudly(subject string) {
 
 func sendEmail(subject string, body string) {
 	log.Println("Sending email with subject '" + subject + "' and body '" + body + "'")
-	sg := sendgrid.NewSendGridClient("golang", "golang")
+	sg := sendgrid.NewSendGridClientWithApiKey("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")
 	message := sendgrid.NewMail()
 	message.AddTo("jworky@gmail.com")
 
@@ -174,6 +174,7 @@ func sendEmail(subject string, body string) {
 	randNumberStr := strconv.Itoa(randNumber)
 	message.SetSubject(subject + randNumberStr)
 	message.SetText(body)
+	// Using pdxdailydancer.com email because it is a valid email address that can send/receive
 	message.SetFrom("support@pdxdailydancer.com")
 	if r := sg.Send(message); r == nil {
 		log.Println("Email sent!")
