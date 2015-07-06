@@ -13,7 +13,7 @@ echo "REMINDER: call this with 'nohup' and a trailing '&'"
 while true; do
   cd /home/dev/freecinc
   RACK_ENV=production bundle exec rackup config-freecinc.ru -p 9952
-  sleep 10
+  sleep 2
   echo "freecinc restarted `date`" >> log/freecinc_restart.log
 done
 

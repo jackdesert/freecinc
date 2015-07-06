@@ -65,6 +65,14 @@ section {
 
 #the-rest {
   background-color: #29c3d1; }
+#status{
+    background-color: #ff0;
+    color: red;
+    font-size: 1.5rem;
+    margin: 1rem;
+    padding: 1rem;
+    text-transform: none;
+}
 
 p {
   padding: 2mm 10mm;
