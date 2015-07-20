@@ -21,10 +21,10 @@ func init() {
 
 func main() {
 	prod := server{Name: "freecinc"}
-	staging := server{Name: "freecinc-staging"}
+	//staging := server{Name: "freecinc-staging"}
 
 	prod.checkAndNotifyIfFailsTwice()
-	staging.checkAndNotifyIfFailsTwice()
+	//staging.checkAndNotifyIfFailsTwice()
 }
 
 func (s server) checkAndNotifyIfFailsTwice() {
