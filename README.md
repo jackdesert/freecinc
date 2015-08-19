@@ -8,7 +8,7 @@ The original FreeCinc is live on the web at [FreeCinc.com](https://freecinc.com)
 Setting up TaskServer
 ---------------------
 
-Start with the [TaskServer Docs](http://taskwarrior.org/docs/taskserver/setup.html)
+Start with the [TaskServer Docs](http://taskwarrior.org/docs/taskserver/setup.html) and get help in the taskwarrior channel on FreeNode.
 
 Once you have your TaskServer syncing with a client, set these variables in config/location.yml:
 
