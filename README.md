@@ -22,11 +22,6 @@ Then start the web server (ideally in development mode the first time so you can
 Starting the web server
 -----------------------
 
-### Production Mode
-It is recommended that you start freecinc using the wrapper script. That way, if it dies, it is immediately replaced with another
-
-    nohup script/run_freecinc_indefinitely.sh &
-
 
 ### Development Mode
 
@@ -45,6 +40,12 @@ With binding to 0.0.0.0 for use in a VM:
 With auto-reloading:
 
     bundle exec rerun 'rackup config-freecinc.ru -o 0.0.0.0' --background --pattern '*.rb'
+
+
+### Production Mode
+It is recommended that you start freecinc using the wrapper script. That way, if it dies, it is immediately replaced with another
+
+    nohup script/run_freecinc_indefinitely.sh &
 
 
 Starting Guard-LiveReload
@@ -93,7 +94,7 @@ In order for it to work, you must first set up taskwarrior
 Script that kills taskd if the memory usage is too high
 -------------------------------------------------------
 
-This script is to be run once a minute from your production server.
+It is recommended to run this script once a minute from your production server if you are experiencing occasional memory bloats with taskd:
 
     freecinc/tools/restart_if_memory.sh
 
