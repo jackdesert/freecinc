@@ -1,14 +1,14 @@
 FreeCinc
 ========
 
-Setting up your own (TaskServer)[http://taskwarrior.org/docs/taskserver/why.html] takes some effort. By running freecinc on the same server as your taskserver, you allow others access to sync with your taskserver. Like sharing is caring. Like free beer. Like love and a handshake.
+Setting up your own [TaskServer](http://taskwarrior.org/docs/taskserver/why.html)takes some effort. By running freecinc on the same server as your taskserver, you allow others access to sync with your taskserver. Like sharing is caring. Like free beer. Like love and a handshake.
 
 The original FreeCinc is live on the web at https://freecinc.com
 
 Setting up TaskServer
 ---------------------
 
-Start with the (TaskServer Docs)[http://taskwarrior.org/docs/taskserver/setup.html]
+Start with the [TaskServer Docs](http://taskwarrior.org/docs/taskserver/setup.html)
 
 Once you have your TaskServer syncing with a client, set these variables in config/location.yml:
 
