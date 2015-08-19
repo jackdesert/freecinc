@@ -1,6 +1,11 @@
 FreeCinc
 ========
 
+Setting up your own taskserver takes some effort. Why not share your effort by allowing others to sync with it also?
+
+Live on the web at https://freecinc.com
+
+
 Starting the web server
 -----------------------
 
