@@ -74,8 +74,8 @@ Running tests
     bundle exec rspec
 
 
-Automate the remote machine sync check
---------------------------------------
+GoLang Script to see if sync is still working
+---------------------------------------------
 
 The script in tools/restart_unless_sync.go is a remote monitoring service for taskd.
 If you make changes to restart_unless_sync.go, build it:
@@ -88,7 +88,7 @@ Put this in your crontab on the remote monitoring server
     LOG=/home/ubuntu/freecinc/tools/log/go.log
     * * * * * /home/ubuntu/freecinc/tools/bin/restart_unless_sync >> $LOG 2>> $LOG
 
-In order for it to work, you must first set up taskwarrior
+In order for it to work, you must first set up taskwarrior on the server where you will run this script
 
 
 Script that kills taskd if the memory usage is too high
@@ -99,3 +99,11 @@ It is recommended to run this script once a minute from your production server i
     freecinc/tools/restart_if_memory.sh
 
 It is built as a bash script so that it can start up without inducing extra memory penalty (in case the memory is already running out)
+
+
+TODO
+----
+
+* Pull details from tools/restart-unless-sync.go out into a config file.
+
+
