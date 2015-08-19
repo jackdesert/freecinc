@@ -32,11 +32,19 @@ It is recommended that you start freecinc using the wrapper script. That way, if
 
 Basic:
 
-    bundle exec freecinc.rb
+    bundle exec rackup config-freecinc.ru
+
+With port specified:
+
+    bundle exec rackup config-freecinc.ru -p 9952
+
+With binding to 0.0.0.0 for use in a VM:
+
+    bundle exec rackup config-freecinc.ru -o 0.0.0.0
 
 With auto-reloading:
 
-    bundle exec rerun freecinc.rb --background
+    bundle exec rerun 'rackup config-freecind.ru -o 0.0.0.0' --background --pattern '*.rb'
 
 
 Starting Guard-LiveReload
