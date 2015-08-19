@@ -12,9 +12,9 @@ Start with the [TaskServer Docs](http://taskwarrior.org/docs/taskserver/setup.ht
 
 Once you have your TaskServer syncing with a client, set these variables in config/location.yml:
 
-    install_dir
-    pki_dir
-    salt
+    install_dir:  wherever
+    pki_dir:      wherever/pki
+    salt:         whatever
 
 Then start the web server (ideally in development mode the first time so you can see any error messages)
 
