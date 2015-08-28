@@ -14,7 +14,6 @@
 
 %p.center
   Your keys have been generated...let's get started!
-  .mirakel= "(Mirakel users, you just need #{mirakel_download_link})"
 
 .space.generate
 
@@ -28,6 +27,7 @@
 
   .command task --version
 
+  .instruct= "(Mirakel users, you just need #{mirakel_download_link})"
 
 %section.first-color
   =haml :_man, locals: {type: :smile}
