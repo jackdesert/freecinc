@@ -3,6 +3,9 @@ FreeCinc
 
 Setting up your own [TaskServer](http://taskwarrior.org/docs/taskserver/why.html) takes some effort. By running freecinc on the same server as your TaskServer, you allow others access to sync with your TaskServer. Like sharing is caring. Like free beer. Like love and a handshake.
 
+Live on the Web
+---------------
+
 The original FreeCinc is live on the web at [FreeCinc.com](https://freecinc.com)
 
 Setting up TaskServer
