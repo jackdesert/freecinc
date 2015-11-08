@@ -165,7 +165,7 @@ func failLoudly(subject string) {
 
 func sendEmail(subject string, body string) {
 	log.Println("Sending email with subject '" + subject + "' and body '" + body + "'")
-	sg := sendgrid.NewSendGridClientWithApiKey("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")
+	sg := sendgrid.NewSendGridClientWithApiKey("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")
 	message := sendgrid.NewMail()
 	message.AddTo("jworky@gmail.com")
 
