@@ -110,3 +110,16 @@ TODO
 * Pull details from tools/restart-unless-sync.go out into a config file.
 
 
+FAQ
+---
+
+Q: What is the difference between `task sync` and `task sync init`?
+A: pbeckingham says 
+     "init" would be better named as 
+     "upload_everything_once_so_the_server_has_history_for_deltas"
+   which means that when you generate new keys, you should run `task sync init` 
+   on one client, and if you have additional clients you only need to run 
+   `task sync` on them.
+
+
+
