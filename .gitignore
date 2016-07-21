@@ -17,7 +17,7 @@ config/location.yml
 .DS_STORE
 
 # Logging
-log/
+log/*.log
 
 tools/log/
 tools/config.yml
