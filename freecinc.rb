@@ -27,7 +27,7 @@ require './helpers/view_helper'
 class FreeCinc < Sinatra::Base
 
   CONFIG_FILE = File.expand_path('config/location.yml', File.dirname(__FILE__))
-  RESTART_COMMAND = "pkill -f '/usr/local/bin/taskd server'"
+  RESTART_COMMAND = "pkill -f '/usr/bin/taskd server'"
   RESTART_SECRET = YAML.load_file(CONFIG_FILE)['restart_secret']
 
   configure :production, :development do
