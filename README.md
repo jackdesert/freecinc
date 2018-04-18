@@ -11,7 +11,19 @@ The original FreeCinc is live on the web at [FreeCinc.com](https://freecinc.com)
 Setting up TaskServer
 ---------------------
 
-Start with the [TaskServer Docs](http://taskwarrior.org/docs/taskserver/setup.html) and get help in the taskwarrior channel on FreeNode.
+Ubuntu now has taskd in its apt repositories!!!
+
+    sudo apt install taskd
+
+This at least gets you past the building hurdle. 
+
+Check out `man taskd`, `man taskdrc`, and `man taskdctl`
+
+
+Also see the [TaskServer Docs](http://taskwarrior.org/docs/taskserver/setup.html) and get help in the taskwarrior channel on FreeNode.
+
+And hopefully you won't need the [TaskServer source code](https://github.com/GothenburgBitFactory/taskserver.git)
+
 
 Once you have your TaskServer syncing with a client, set these variables in config/location.yml:
 
@@ -19,11 +31,18 @@ Once you have your TaskServer syncing with a client, set these variables in conf
     pki_dir:      wherever/pki
     salt:         whatever
 
-Then start the web server (ideally in development mode the first time so you can see any error messages)
+
+### Running taskd Indefinitely
+
+The apt-get version of taskd comes with an startup script, accessible by `service start taskd`, but it's not working for me. So I'm still invoking `taskd server` explicitly via the script in script/run_taskd_indefinitely.sh
+
+
 
 
 Starting the web server
 -----------------------
+
+Then start the web server (ideally in development mode the first time so you can see any error messages)
 
 
 ### Development Mode
@@ -48,7 +67,7 @@ With auto-reloading:
 ### Production Mode
 It is recommended that you start freecinc using the wrapper script. That way, if it dies, it is immediately replaced with another
 
-    nohup script/run_freecinc_indefinitely.sh &
+    nohup bin/run_freecinc_indefinitely.sh &
 
 
 Starting Guard-LiveReload
@@ -68,7 +87,7 @@ Starting taskd on the Server
 
 It is recommended that you start taskd using the wrapper script. That way, if it dies, it is immediately replaced with another
 
-    cd freecinc && nohup script/run_taskd_indefinitely.sh &
+    cd freecinc && nohup bin/run_taskd_indefinitely.sh &
 
 
 Running tests
