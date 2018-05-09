@@ -2,6 +2,7 @@ require 'yaml'
 require 'open3'
 
 class Forge
+  class BashCommandError < Exception; end
 
   CONFIG_FILE = File.expand_path('../config/location.yml', File.dirname(__FILE__))
 
@@ -135,7 +136,7 @@ class OriginalForge < Forge
     output = stdout_and_stderr.read
 
     unless (wait_thr.value.success? || tolerate_errors)
-      raise ArgumentError, stdout_and_stderr.read
+      raise BashCommandError, stdout_and_stderr.read
     end
 
     stdin.close
