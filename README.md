@@ -123,6 +123,13 @@ It is recommended to run this script once a minute from your production server i
 It is built as a bash script so that it can start up without inducing extra memory penalty (in case the memory is already running out)
 
 
+LICENSE
+------- 
+
+MIT License. See LICENSE in this repo.
+
+
+
 TODO
 ----
 
